@@ -1,0 +1,235 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="" style="width: 150px;">
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+  
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+  
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+  
+        <li class="nav-item dropdown pe-3">
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle" style="font-size: 25px;margin-right: 8px;"></i>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ userName }}</span>
+          </a><!-- End Profile Image Icon -->
+  
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6></h6>
+             
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/logout" (click)="logout()">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+      </ul>
+    </nav><!-- End Icons Navigation -->
+  </header><!-- End Header -->
+  
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <a class="nav-link " href="/admin-dashboard">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    
+    <li class="nav-heading">Pages</li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/korisnici">
+        <i class="bi bi-person"></i>
+        <span>Korisnici</span>
+      </a>
+    </li><!-- End Profile Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/djeca-admin">
+          <i class="bi bi-bell"></i>
+        <span>Djeca</span>
+      </a>
+    </li><!-- End F.A.Q Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/aktuelnosti">
+          <i class="bi bi-bell"></i>
+        <span>Aktuelnosti</span>
+      </a>
+    </li><!-- End F.A.Q Page Nav -->
+  
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/donacije">
+          <i class="bi bi-cash-stack"></i>
+        <span>Donacije</span>
+      </a>
+    </li><!-- End Contact Page Nav -->
+  
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/pravilnici">
+          <i class="bi bi-clipboard"></i>
+        <span>Pravilnici</span>
+      </a>
+    </li><!-- End Register Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/izvjestaji">
+          <i class="bi bi-clipboard"></i>
+        <span>Izvještaji</span>
+      </a>
+    </li><!-- End Register Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/sporazumi">
+          <i class="bi bi-clipboard"></i>
+        <span>Sporazumi</span>
+      </a>
+    </li><!-- End Register Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/javnenabavke">
+          <i class="bi bi-clipboard"></i>
+        <span>Javne nabavke</span>
+      </a>
+    </li><!-- End Register Page Nav -->
+    <!-- Additional sidebar items... -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/logout" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Logout</span>
+      </a>
+    </li>
+  </ul>
+  </aside><!-- End Sidebar-->
+  
+  <main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+ 
+
+  
+    <div *ngIf="isLoggedIn && userRole === 'admin'">
+ 
+  <section id="schedule" class="schedule section">
+    <div class="container section-title" data-aos="fade-up">
+      <h2 style="font-family: Edwardian Script ITC;color: #e91e63;font-size:64px;">Lista donacija</h2>
+    </div>
+  
+    <div class="container">
+      <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+        <li class="nav-item">
+          <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab"><i class="bi bi-clipboard2-check" style="font-size: 25px;"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab"><i class="bi bi-clipboard-heart" style="font-size: 25px;"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab"><i class="bi bi-clipboard2-check" style="font-size: 25px;"></i></a>
+        </li>
+      </ul>
+  
+      <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+        <!-- Schedule Day 1 -->
+        <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
+          <div *ngFor="let donation of day1Donations" class="row schedule-item">
+            <div class="col-md-2">
+              <time>ID: {{ donation.id }}</time>
+            </div>
+            <div class="col-md-10">
+              <div class="speaker">
+                <img src="assets/img/user.png" alt="Donor profile">
+              </div>
+              <h4 style="color: #18d26e;">Iznos: {{ donation.amount }} KM<span style="color: black;">  Donator:</span><span style="color: #e91e63;"> {{ donation.first_name }} {{ donation.last_name }}</span></h4>
+              <p style="color: black;">Transaction ID: {{ donation.transaction_id }}</p>
+              <p style="color: black;">Date: {{ donation.donation_date }}</p>
+              <p style="color: black;">Status: {{ donation.payment_status }}</p>
+              <hr style="border: 1px solid #666; margin: 10px 0;">
+            </div>
+          </div>
+        </div>
+  
+        <!-- Schedule Day 2 -->
+        <div role="tabpanel" class="col-lg-9 tab-pane fade" id="day-2">
+          <div *ngFor="let donation of day2Donations" class="row schedule-item">
+            <div class="col-md-2">
+              <time>ID: {{ donation.id }}</time>
+            </div>
+            <div class="col-md-10">
+              <div class="speaker">
+                <img src="assets/img/user.png" alt="Donor profile">
+              </div>
+              <h4 style="color: #18d26e;">Iznos: {{ donation.amount }} KM<span style="color: black;">  Donator:</span><span style="color: #e91e63;"> {{ donation.first_name }} {{ donation.last_name }}</span></h4>
+              <p style="color: black;">Transaction ID: {{ donation.transaction_id }}</p>
+              <p style="color: black;">Date: {{ donation.donation_date }}</p>
+              <p style="color: black;">Status: {{ donation.payment_status }}</p>
+              <hr style="border: 1px solid #666; margin: 10px 0;">
+            </div>
+          </div>
+        </div>
+  
+        <!-- Schedule Day 3 -->
+        <div role="tabpanel" class="col-lg-9 tab-pane fade" id="day-3">
+          <div *ngFor="let donation of day3Donations" class="row schedule-item">
+            <div class="col-md-2">
+              <time>ID: {{ donation.id }}</time>
+            </div>
+            <div class="col-md-10">
+              <div class="speaker">
+                <img src="assets/img/user.png" alt="Donor profile">
+              </div>
+              <h4 style="color: #18d26e;"> Iznos: {{ donation.amount }} KM <span style="color: black;">  Donator:</span><span style="color: #e91e63;"> {{ donation.first_name }} {{ donation.last_name }}</span></h4>
+              <p style="color: black;">Transaction ID: {{ donation.transaction_id }}</p>
+              <p style="color: black;">Date: {{ donation.donation_date }}</p>
+              <p style="color: black;">Status: {{ donation.payment_status }}</p>
+              <hr style="border: 1px solid #666; margin: 10px 0;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+
+
+  
+  
+    </div>
+  </main><!-- End #main -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Dom za nezbrinutu djecu</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="#">Faris i Fatima</a>
+    </div>
+  </footer><!-- End Footer -->

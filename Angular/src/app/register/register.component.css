@@ -1,0 +1,126 @@
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+ 
+    font-family: "Open Sans", sans-serif;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+
+}
+
+.register-form {
+    width: 100%; 
+    max-width: 700px; 
+    padding: 0px; /* Dodaje padding unutra forme */
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    background-color: #fff; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    position: relative; /* Postavlja formu kao apsolutno pozicioniranu */
+   
+    left: 50%; /* Centriranje forme horizontalno */
+    transform: translateX(-50%); /* Ispravlja horizontalno centriranje */
+    margin: auto;
+}
+
+
+  .form-input {
+    position: relative;
+    font-family: "Open Sans", sans-serif;
+    color: #777;
+    width: 400px;
+    
+
+  }
+  
+  .form-input input,
+  .form-input select {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 40px;
+    border: none;
+    border-bottom: 2px solid #777;
+    outline: none;
+    background: transparent;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-weight: bold;
+    color: #777;
+    padding: 10px 40px 10px 40px;
+
+  }
+  
+  .form-input span {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    font-size: 20px;
+    color: #777;
+  }
+  
+  .form-input .toggle-password {
+    position: absolute;
+    right: 10px; /* Razmak od desnog ruba */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.custom-register-btn {
+    background-color: #e91e63; /* Pozadinska boja dugmeta */
+    color: #fff; /* Boja teksta na dugmetu */
+    border: none; /* Uklanja obrub dugmeta */
+    padding: 10px 20px; /* Razmak unutar dugmeta */
+    border-radius: 5px; /* Zaobljeni uglovi */
+    font-size: 16px; /* Veličina fonta */
+    cursor: pointer; /* Pokazivač miša u obliku ruke */
+    transition: background-color 0.3s ease; /* Glatka promjena boje pozadine */
+    text-align: center; /* Centriranje sadržaja horizontalno */
+    width: 100px;
+}
+
+.custom-register-btn:hover {
+    background-color: #c2185b; /* Promjena boje pri prelasku miša */
+}
+
+.custom-register-btn:disabled {
+    background-color: #c2185b; /* Boja pozadine kada je dugme onemogućeno */
+    cursor: not-allowed; /* Pokazivač miša u obliku križa kada je dugme onemogućeno */
+}
+.login-link {
+    color: #e91e63; /* Boja linka */
+    text-decoration: none; /* Uklanja liniju ispod linka */
+    font-weight: bold; /* Opcionalno: podebljava tekst linka */
+    transition: color 0.3s ease; /* Glatka promjena boje */
+}
+
+.login-link:hover {
+    color: #c2185b; /* Boja linka pri prelasku mišem */
+}
+.error-message {
+    margin-top: 2px;
+    color: #e91e63;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Styling for the alert message */
+  .alert {
+    margin-top: 2px; /* Smanjuje razmak između dugmeta i poruke */
+    font-size: 12px; /* Smanjuje veličinu teksta */
+    padding: 5px 10px; /* Smanjuje unutrašnje razmake unutar poruke */
+    width: 90%; /* Smanjuje širinu poruke u odnosu na širinu roditeljskog elementa */
+    margin-left: auto; /* Centriranje poruke */
+    margin-right: auto; /* Centriranje poruke */
+    text-align: center; /* Tekst poravnanje na sredinu */
+  }
+  

@@ -1,0 +1,320 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="" style="width: 150px;">
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+  
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+  
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+  
+        <li class="nav-item dropdown pe-3">
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle" style="font-size: 25px;margin-right: 8px;"></i>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ userName }}</span>
+          </a><!-- End Profile Image Icon -->
+  
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6></h6>
+             
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/logout" (click)="logout()">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+      </ul>
+    </nav><!-- End Icons Navigation -->
+  </header><!-- End Header -->
+  
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <a class="nav-link " href="/admin-dashboard">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    
+    <li class="nav-heading">Pages</li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/korisnici">
+        <i class="bi bi-person"></i>
+        <span>Korisnici</span>
+      </a>
+    </li><!-- End Profile Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/djeca-admin">
+          <i class="bi bi-bell"></i>
+        <span>Djeca</span>
+      </a>
+    </li><!-- End F.A.Q Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/aktuelnosti">
+          <i class="bi bi-bell"></i>
+        <span>Aktuelnosti</span>
+      </a>
+    </li><!-- End F.A.Q Page Nav -->
+  
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/donacije">
+          <i class="bi bi-cash-stack"></i>
+        <span>Donacije</span>
+      </a>
+    </li><!-- End Contact Page Nav -->
+  
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/pravilnici">
+          <i class="bi bi-clipboard"></i>
+        <span>Pravilnici</span>
+      </a>
+    </li><!-- End Register Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/izvjestaji">
+          <i class="bi bi-clipboard"></i>
+        <span>Izvještaji</span>
+      </a>
+    </li><!-- End Register Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/sporazumi">
+          <i class="bi bi-clipboard"></i>
+        <span>Sporazumi</span>
+      </a>
+    </li><!-- End Register Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin/javnenabavke">
+          <i class="bi bi-clipboard"></i>
+        <span>Javne nabavke</span>
+      </a>
+    </li><!-- End Register Page Nav -->
+    <!-- Additional sidebar items... -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/logout" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Logout</span>
+      </a>
+    </li>
+  </ul>
+  </aside><!-- End Sidebar-->
+  
+  <main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="row d-flex justify-content-center py-5" style="margin-left: 700px;">
+    <div class="col-md-8 col-lg-6 col-xl-5">
+  
+      <div class="card text-body weather-card" style=" border-radius: 35px;">
+        <div class="card-body p-4">
+  
+          <div class="d-flex justify-content-end weather-time" *ngIf="weatherData">
+            <h6>{{ currentTime }}</h6>
+          </div>
+  
+          <div class="d-flex flex-column text-center mt-5 mb-4">
+            <h6 class="display-4 mb-0 font-weight-bold"> {{ weatherData.main.temp }}°C </h6>
+            <span class="small" style="color: #868B94">Bihać</span>
+          </div>
+  
+          <div class="d-flex align-items-center">
+            <div class="flex-grow-1" style="font-size: 1rem;">
+              <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1">{{ weatherData.wind.speed }} km/h
+                </span>
+              </div>
+              <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> {{ weatherData.main.humidity }}%
+                </span></div>
+  
+            </div>
+            <div>
+              <img [src]="'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'" alt="Weather icon">
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+  
+  
+  <section>
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card" id="chat3" style="border-radius: 15px;">
+            <div class="card-body">
+              <div class="row">
+                <!-- Lista korisnika -->
+                <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+                  <div class="p-3">
+                    <div class="input-group rounded mb-3">
+                      <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                        aria-describedby="search-addon" (input)="onSearch($event)" (focus)="showUserList = true" style="border-color:#e91e63;" />
+                      <span class="input-group-text border-0" id="search-addon" style="background-color: #e91e63;">
+                        <i class="fas fa-search" style="color: white;"></i>
+                      </span>
+                    </div>
+                    <div class="list-unstyled" *ngIf="showUserList">
+                      <ul class="list-unstyled mb-0">
+                        <li class="p-2 border-bottom" *ngFor="let user of filteredUsers" (click)="selectUser(user, $event)">
+                          <a href="#" class="d-flex justify-content-between">
+                            <div class="d-flex flex-row">
+                              <div>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                  alt="avatar" class="d-flex align-self-center me-3" width="60">
+                                <span class="badge bg-success badge-dot"></span>
+                              </div>
+                              <div class="pt-1">
+                                <p class="fw-bold mb-0">{{ user.first_name }} {{ user.last_name }}</p>
+                                <p class="small text-muted">{{ user.last_message }}</p>
+                              </div>
+                            </div>
+                            <div class="pt-1">
+                              <p class="small text-muted mb-1">{{ user.last_message_time }}</p>
+                              <span class="badge bg-danger rounded-pill float-end">{{ user.unread_count }}</span>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- Dio za prikaz i unos poruka -->
+                <div class="col-md-6 col-lg-7 col-xl-8">
+                  <!-- Prikaz praznog dijela chata dok nije izabran korisnik -->
+                  <div *ngIf="!selectedUser" class="pt-3 pe-3">
+                    <p class="text-muted">Please select a user to start chatting, but you can still type your message.</p>
+                  </div>
+                  <div *ngIf="selectedUser" class="pt-3 pe-3">
+                    <h5>{{ selectedUser.first_name }} {{ selectedUser.last_name }}</h5>
+                  </div>
+  
+                  <!-- Prikaz poruka ako je izabran korisnik -->
+                  <div *ngIf="selectedUser" class="pt-3 pe-3 chat-messages-container">
+                    <div *ngFor="let message of chatMessages">
+                      <div class="message-container" [ngClass]="{'message-sent': message.sender_id === currentUserId, 'message-received': message.sender_id !== currentUserId}">
+                        <img [src]="selectedUser?.avatar || 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp'"
+                          alt="avatar" class="avatar"/>
+                        <div class="message-content">
+                          <p class="small p-2 mb-1 rounded-3" [ngClass]="{'bg-body-tertiary': message.sender_id !== currentUserId, '#e91e63 text-white': message.sender_id === currentUserId}">
+                            {{ message.message_text }}
+                          </p>
+                          <p class="small mb-3 rounded-3 text-muted"><br>{{ message.created_at | date: 'shortTime' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <!-- Unos i slanje poruka - uvek vidljivo -->
+                  <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
+                    <img [src]="selectedUser?.avatar || 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp'"
+                      alt="avatar" class="avatar" style="width: 40px; height: 40px;"/>
+                    <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1" placeholder="Type your message..." [(ngModel)]="messageText"/>
+                    <a class="ms-3" (click)="sendMessage()" [class.disabled]="!selectedUser"><i class="fas fa-paper-plane"></i></a>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  <div class="col-12">
+    <div class="card top-selling overflow-auto" style="margin-left:100px;margin-right:250px;">
+      <div class="filter" style="margin-left: 700px;">
+        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+          <!-- Dodajte stavke izbornika ovdje ako je potrebno -->
+          <div>
+            <label for="year">Godina:</label>
+            <input type="number" id="year" [(ngModel)]="year" (change)="onYearChange(year)" style="border-color: #e91e63;"/>
+          </div>
+        
+          <div>
+            <label for="month">Mjesec:</label>
+            <select id="month" [(ngModel)]="month" (change)="onMonthChange(month)" style="border-color:#e91e63;">
+              <option *ngFor="let m of [1,2,3,4,5,6,7,8,9,10,11,12]" [value]="m">
+                {{ m }}
+              </option>
+            </select>
+          </div>
+        </ul>
+      </div>
+  
+      <div class="card-body pb-0">
+        <h5 class="card-title">Donacije <span>| Ovaj Mjesec</span></h5>
+  
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">Datum</th>
+              <th scope="col">Iznos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let donation of donations">
+              <td>{{ donation.day | date }}</td>
+              <td>{{ donation.total_amount | currency:'BAM' }}</td>
+            </tr>
+          </tbody>
+          
+          
+          
+        </table>
+      </div>
+    </div>
+  </div><!-- End Donacije -->
+  
+  
+  
+  
+  
+  </main><!-- End #main -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Dom za djecu bez roditeljskog</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="#">Fatima i Faris</a>
+    </div>
+  </footer><!-- End Footer -->

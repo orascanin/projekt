@@ -1,0 +1,193 @@
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container">
+      <div class="header-container d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <img src="assets/img/logo.png" alt="" class="img-fluid" style="width: 200px;height: 500px;position:center;">
+        </div>
+  
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="/home">Početna</a></li>
+            <li class="dropdown"><a href="#"><span>O nama</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="/onama">O domu</a></li>
+                <li><a href="/menadzment">Menadžment</a></li>
+                <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+                <li><a href="/donatori">Donatori</a></li>
+              </ul>
+            </li>
+            <li><a class="nav-link scrollto" href="/galerija">Galerija</a></li>
+            <li><a class="nav-link scrollto" href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a class="nav-link scrollto" href="/kontakt">Kontakt</a></li>
+            
+            <!-- Prikazivanje linkova na osnovu prijave -->
+            <li *ngIf="!isLoggedIn"><a class="nav-link scrollto" href="/login">Login</a></li>
+            <li *ngIf="!isLoggedIn"><a class="getstarted scrollto" href="/register" style="background-color: #e91e63;">Signup</a></li>
+            
+            <!-- Meni koji se prikazuje nakon prijave -->
+            <li *ngIf="isLoggedIn" id="profile-link" class="dropdown">
+              <a href="#"><i class="bi bi-person-circle" style="font-size: 25px;margin-right: 8px;"></i><span>{{ userName }}</span> <i class="bi bi-chevron-down" style="  margin-right: 10px;"></i></a>
+              <ul>
+                <li><a href="/profile">Moj Profil</a></li>
+                <li><a href="/moje-donacije">Moje Donacije</a></li>
+                <li><a href="/logout" (click)="logout()">Logout <i class="bi bi-box-arrow-in-right" style="font-size: 15px;"></i></a></li>
+              </ul>
+            </li>
+          </ul>
+          <i id="mobile-nav-toggle" class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        
+      </div><!-- End Header Container -->
+    </div>
+  </header><!-- End Header -->
+  <main id="main">
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="	background-color: rgb(203 213 225);">
+      <div class="container position-relative">
+      <h1 style="font-family: Edwardian Script ITC;color: #e91e63;"></h1>
+        <p></p>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="/home" style="color: #e91e63;">Početna</a></li>
+            <li class="current" style="color: white;">Aktuelnosti</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+</main>
+  <main class="main">
+    <div class="container">
+      <div class="row">
+  
+        <div class="col-lg-8">
+  
+          <!-- Blog Posts Section -->
+          <section id="blog-posts" class="blog-posts section">
+            <div class="container">
+              <div class="row gy-4">
+                <div class="col-lg-12" *ngFor="let item of paginatedNews; let i = index">
+                  <article>
+  
+                    <div class="post-img">
+                      <img *ngIf="item.image_path" [src]="getImageUrl(item.image_path)" alt="Slika vesti" class="img-fluid" style="width:850px;height:450px;" />
+                      <i *ngIf="!item.image_path" class="bi bi-image" style="color: #e91e63;font-size:18px"></i>
+                    </div>
+  
+                    <h2 class="title">
+                      <a href="blog-details.html">{{ item.title }}</a>
+                    </h2>
+  
+                    <div class="meta-top">
+                      <ul>
+                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">Admin</a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html">{{ item.upload_date }}</a></li>
+                      </ul>
+                    </div>
+  
+                    <div class="content">
+                      <p [ngClass]="{'text-collapsed': !item.isTextExpanded, 'text-expanded': item.isTextExpanded}">
+                        {{ item.description }}
+                      </p>
+                      <div class="read-more">
+                        <a href="#" (click)="toggleText()" style="background-color: #e91e63;">{{ item.isTextExpanded ? 'Read Less' : 'Read more' }}</a>
+                      </div>
+                    </div>
+  
+                  </article>
+                </div><!-- End post list item -->
+              </div><!-- End blog posts list -->
+            </div>
+          </section><!-- /Blog Posts Section -->
+  
+          <!-- Blog Pagination Section -->
+          <section id="blog-pagination" class="blog-pagination section">
+            <div class="container">
+              <div class="d-flex justify-content-center">
+                <ul>
+                  <li>
+                    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+                      <i class="bi bi-chevron-left"></i>
+                    </button>
+                  </li>
+                  <li *ngFor="let page of getPaginationArray()">
+                    <button (click)="changePage(page)" [class.active]="currentPage === page">{{ page }}</button>
+                  </li>
+                  <li>
+                    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+                      <i class="bi bi-chevron-right"></i>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section><!-- /Blog Pagination Section -->
+  
+        </div>
+  
+        <div class="col-lg-4 sidebar">
+  
+          <div class="widgets-container">
+  
+            <!-- Search Widget -->
+            <div class="search-widget widget-item">
+              <h3 class="widget-title">Search</h3>
+              <form action="">
+                <input type="text">
+                <button type="submit" title="Search" style="background-color: #e91e63;"><i class="bi bi-search"></i></button>
+              </form>
+            </div><!-- /Search Widget -->
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>Navigacija</h4>
+          <ul>
+            <li><a href="/home">Početna</a></li>
+            <li><a href="/galerija">Galerija</a></li>
+            <li><a href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a href="/kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>O nama</h4>
+          <ul>
+            <li><a href="/onama">O domu</a></li>
+            <li><a href="/menadzment">Menadžment</a></li>
+            <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+            <li><a href="/donatori">Donatori</a></li>
+      
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Propisi</h4>
+          <ul>
+            <li><a href="/prikaz-pravilnici">Pravilnici</a></li>
+            <li><a href="/prikaz-izvjestaji">Izvještaji i planovi</a></li>
+            <li><a href="/prikaz-sporazumi">Sporazumi o saradnji</a></li> 
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Društvene mreže</h4>
+          <div class="social-links">
+            <a href="#"><i class="bi bi-facebook" ></i></a>
+                  <a href="#"><i class="bi bi-instagram" ></i></a>
+                  <a href="#"><i class="bi bi-envelope" ></i></a>
+                  <a href="#"><i class="bi bi-twitter" ></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+ </footer>
+ <div class="footerBottom">
+  <p>Pravila privatnosti / &copy; JU Dom za djecu bez roditeljskog staranja USK-a</p>
+</div> 
+  

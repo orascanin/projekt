@@ -1,0 +1,278 @@
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container">
+      <div class="header-container d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <img src="assets/img/logo.png" alt="" class="img-fluid" style="width: 200px;height: 500px;position:center;">
+        </div>
+  
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="/home">Početna</a></li>
+            <li class="dropdown"><a href="#"><span>O nama</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="/onama">O domu</a></li>
+                <li><a href="/menadzment">Menadžment</a></li>
+                <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+                <li><a href="/donatori">Donatori</a></li>
+              </ul>
+            </li>
+            <li><a class="nav-link scrollto" href="/galerija">Galerija</a></li>
+            <li><a class="nav-link scrollto" href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a class="nav-link scrollto" href="/kontakt">Kontakt</a></li>
+            
+            <!-- Prikazivanje linkova na osnovu prijave -->
+            <li *ngIf="!isLoggedIn"><a class="nav-link scrollto" href="/login">Login</a></li>
+            <li *ngIf="!isLoggedIn"><a class="getstarted scrollto" href="/register" style="background-color: #e91e63;">Signup</a></li>
+            
+            <!-- Meni koji se prikazuje nakon prijave -->
+            <li *ngIf="isLoggedIn" id="profile-link" class="dropdown">
+              <a href="#"><i class="bi bi-person-circle" style="font-size: 25px;margin-right: 8px;"></i><span>{{ userName }}</span> <i class="bi bi-chevron-down" style="  margin-right: 10px;"></i></a>
+              <ul>
+                <li><a href="/profile">Moj Profil</a></li>
+                <li><a href="/moje-donacije">Moje Donacije</a></li>
+                <li><a href="/logout" (click)="logout()">Logout <i class="bi bi-box-arrow-in-right" style="font-size: 15px;"></i></a></li>
+              </ul>
+            </li>
+          </ul>
+          <i id="mobile-nav-toggle" class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        
+      </div><!-- End Header Container -->
+    </div>
+  </header><!-- End Header -->
+<main id="main">
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="	background-color: rgb(203 213 225);">
+      <div class="container position-relative">
+      <h1 style="font-family: Edwardian Script ITC;color: #e91e63;"></h1>
+        <p></p>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="/home" style="color: #e91e63;">Početna</a></li>
+            <li class="current" style="color: white;">Moje profil</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+</main>
+<div *ngIf="isLoggedIn && userRole === 'donor'">
+<main id="main" class="main">
+
+
+    <section class="section profile">
+      <div class="row">
+        <div class="col-xl-4">
+
+          <div class="card" style="margin-left: 150px;">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+              <img src="assets/img/user-profile.png" alt="Profile" class="rounded-circle">
+              <h2>{{ users.first_name}}  {{ users.last_name }}</h2>
+              <h3>Donator</h3>
+              <div class="social-links mt-2">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-xl-8" style="width: 700px;margin-left:50px;">
+
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Pregled </button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit" style="color: #e91e63;">Uredi profil</button>
+                </li>
+
+              </ul>
+              <div class="tab-content pt-2">
+
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                 <p></p>
+                 <h5></h5>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Ime</div>
+                    <div class="col-lg-9 col-md-8">{{ users.first_name}}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Prezime</div>
+                    <div class="col-lg-9 col-md-8">{{users.last_name}}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Email</div>
+                    <div class="col-lg-9 col-md-8">{{ users.email }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Država</div>
+                    <div class="col-lg-9 col-md-8">{{ users.country }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Grad</div>
+                    <div class="col-lg-9 col-md-8">{{ users.city }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Kontakt</div>
+                    <div class="col-lg-9 col-md-8">{{ users.phone_number }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Adresa</div>
+                    <div class="col-lg-9 col-md-8">{{ users.address}}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Poštanski broj</div>
+                    <div class="col-lg-9 col-md-8">{{ users.postal_code}}</div>
+                  </div>
+                </div>
+
+   
+                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                  <!-- Profile Edit Form -->
+                  <form (ngSubmit)="updateUser()" #profileForm="ngForm">
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Ime</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="fullName" type="text" class="form-control" id="fullName" [(ngModel)]="users.first_name" required>
+                      </div>
+                    </div>
+                
+                    <div class="row mb-3">
+                      <label for="lastName" class="col-md-4 col-lg-3 col-form-label">Prezime</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="lastName" type="text" class="form-control" id="lastName" [(ngModel)]="users.last_name" required>
+                      </div>
+                    </div>
+                
+                    <div class="row mb-3">
+                      <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="email" type="email" class="form-control" id="email" [(ngModel)]="users.email" required>
+                      </div>
+                    </div>
+                
+                    <div class="row mb-3">
+                      <label for="phoneNumber" class="col-md-4 col-lg-3 col-form-label">Kontakt</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="phoneNumber" type="text" class="form-control" id="phoneNumber" [(ngModel)]="users.phone_number">
+                      </div>
+                    </div>
+                
+                    <div class="row mb-3">
+                      <label for="country" class="col-md-4 col-lg-3 col-form-label">Država</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="country" type="text" class="form-control" id="country" [(ngModel)]="users.country">
+                      </div>
+                    </div>
+                
+                    <div class="row mb-3">
+                      <label for="city" class="col-md-4 col-lg-3 col-form-label">Grad</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="city" type="text" class="form-control" id="city" [(ngModel)]="users.city">
+                      </div>
+                    </div>
+                
+                    <div class="row mb-3">
+                      <label for="address" class="col-md-4 col-lg-3 col-form-label">Adresa</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="address" type="text" class="form-control" id="address" [(ngModel)]="users.address">
+                      </div>
+                    </div>
+                
+                    <div class="row mb-3">
+                      <label for="postalCode" class="col-md-4 col-lg-3 col-form-label">Poštanski broj</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="postalCode" type="text" class="form-control" id="postalCode" [(ngModel)]="users.postal_code">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="passwordHash" class="col-md-4 col-lg-3 col-form-label">Nova lozinka</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="passwordHash" type="password" class="form-control" id="passwordHash" [(ngModel)]="users.password_hash">
+                      </div>
+                    </div>
+                
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary" [disabled]="!profileForm.form.valid" style="color: white;background-color:#e91e63;border-color:#e91e63;">Spremi promjene</button>
+                    </div>
+                
+                    <!-- Display errors and success messages here -->
+                   
+                    <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+                  </form>
+                  <!-- End Profile Edit Form -->
+                </div>
+                
+              </div></div></div></div>
+      
+          
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-col">
+        <h4>Navigacija</h4>
+        <ul>
+          <li><a href="/home">Početna</a></li>
+          <li><a href="/galerija">Galerija</a></li>
+          <li><a href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>O nama</h4>
+        <ul>
+          <li><a href="/onama">O domu</a></li>
+          <li><a href="/menadzment">Menadžment</a></li>
+          <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+          <li><a href="/donatori">Donatori</a></li>
+    
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Propisi</h4>
+        <ul>
+          <li><a href="/prikaz-pravilnici">Pravilnici</a></li>
+          <li><a href="/prikaz-izvjestaji">Izvještaji i planovi</a></li>
+          <li><a href="/prikaz-sporazumi">Sporazumi o saradnji</a></li> 
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Društvene mreže</h4>
+        <div class="social-links">
+          <a href="#"><i class="bi bi-facebook" ></i></a>
+                <a href="#"><i class="bi bi-instagram" ></i></a>
+                <a href="#"><i class="bi bi-envelope" ></i></a>
+                <a href="#"><i class="bi bi-twitter" ></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</footer>
+<div class="footerBottom">
+<p>Pravila privatnosti / &copy; JU Dom za djecu bez roditeljskog staranja USK-a</p>
+</div>
+</div>

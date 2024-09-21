@@ -1,0 +1,299 @@
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container">
+      <div class="header-container d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <img src="assets/img/logo.png" alt="" class="img-fluid" style="width: 200px;height: 500px;position:center;">
+        </div>
+  
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="/home">Početna</a></li>
+            <li class="dropdown"><a href="#"><span>O nama</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="/onama">O domu</a></li>
+                <li><a href="/menadzment">Menadžment</a></li>
+                <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+                <li><a href="/donatori">Donatori</a></li>
+              </ul>
+            </li>
+            <li><a class="nav-link scrollto" href="/galerija">Galerija</a></li>
+            <li><a class="nav-link scrollto" href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a class="nav-link scrollto" href="/kontakt">Kontakt</a></li>
+            
+            <!-- Prikazivanje linkova na osnovu prijave -->
+            <li *ngIf="!isLoggedIn"><a class="nav-link scrollto" href="/login">Login</a></li>
+            <li *ngIf="!isLoggedIn"><a class="getstarted scrollto" href="/register" style="background-color: #e91e63;">Signup</a></li>
+            
+            <!-- Meni koji se prikazuje nakon prijave -->
+            <li *ngIf="isLoggedIn" id="profile-link" class="dropdown">
+              <a href="#"><i class="bi bi-person-circle" style="font-size: 25px;margin-right: 8px;"></i><span>{{ userName }}</span> <i class="bi bi-chevron-down" style="  margin-right: 10px;"></i></a>
+              <ul>
+                <li><a href="/profile">Moj Profil</a></li>
+                <li><a href="/moje-donacije">Moje Donacije</a></li>
+                <li><a href="/logout" (click)="logout()">Logout <i class="bi bi-box-arrow-in-right" style="font-size: 15px;"></i></a></li>
+              </ul>
+            </li>
+          </ul>
+          <i id="mobile-nav-toggle" class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        
+      </div><!-- End Header Container -->
+    </div>
+  </header><!-- End Header -->
+  <main id="main">
+      <!-- Page Title -->
+      <div class="page-title dark-background" data-aos="fade" style="	background-color: rgb(203 213 225);">
+        <div class="container position-relative">
+        <h1 style="font-family: Edwardian Script ITC;color: #e91e63;"></h1>
+          <p></p>
+          <nav class="breadcrumbs">
+            <ol>
+              <li><a href="/home" style="color: #e91e63;">Početna</a></li>
+              <li class="current" style="color: white;">O domu</li>
+            </ol>
+          </nav>
+        </div>
+      </div><!-- End Page Title -->
+   <!-- Features Section -->
+   <section id="features" class="features section">
+
+    <div class="container">
+
+      <ul class="nav nav-tabs row  d-flex" data-aos="fade-up" data-aos-delay="100">
+        <li class="nav-item col-3">
+          <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+            <i class="bi bi-clipboard-data"></i>
+            <h4 class="d-none d-lg-block">Historijat doma</h4>
+          </a>
+        </li>
+        <li class="nav-item col-3">
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+            <i class="bi bi-box-seam"></i>
+            <h4 class="d-none d-lg-block">Organizacija doma</h4>
+          </a>
+        </li>
+        <li class="nav-item col-3">
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
+            <i class="bi bi-list-check"></i>
+            <h4 class="d-none d-lg-block">Ciljevi i zadaci </h4>
+          </a>
+        </li>
+        <li class="nav-item col-3">
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4">
+            <i class="bi bi-list-columns-reverse"></i>
+            <h4 class="d-none d-lg-block">Princip i metode  </h4>
+          </a>
+        </li>
+      </ul><!-- End Tab Nav -->
+
+      <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+
+        <div class="tab-pane fade active show" id="features-tab-1">
+          <div class="row">
+            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+              <p class="fst-italic" style="text-align: justify;">
+                Prva organizovana aktivnost na zbrinjavanju djece lišene roditeljskog staranja  pokrenuta je početkom šezdesetih godina u okviru Centra za socijalni rad.
+              </p>
+              <ul>
+                <li><i class="bi bi-check2-all"></i>
+                  <span style="text-align: justify;">Do 1980.godine Dom je radio pod vrlo teškim materijalnim uslovima u dosta skučenim kapacitetima, a od 1980.godine završen je i predat na upotrebu objekta tipa dom-porodica sa savremenijim uslovima za život i rad djece.</span>
+                </li>
+                <li><i class="bi bi-check2-all" style="text-align: justify;"></i> <span>U periodu od 1992-95 godine rad i aktivnosti Doma se značajnije usložnjava pri čemu je dat prioritet pojačanoj bezbijednosti djece i izvršavanju osnovnih zadataka neophodnih za bezbjedan i siguran boravak djece u Domu.</span>.</li>
+                <li><i class="bi bi-check2-all" style="text-align: justify;"></i> <span>Od 2011. godine Dom ne djeluje više na principu Dom-porodica.</span></li>
+              </ul>
+              <p>
+                U periodu od 2011. godine, a intenzivno od 2013. godine JU Dom za djecu bez roditeljskog staranja  je ušao u proces transformacije, odnosno deinstitucionalizacije sa ciljem otvaranja i kreiranja novi usluga u sistemu socijalne zaštite a u skladu sa donesenim Pravilnikom. U sam proces transformacije do sada su uključeni resorno ministarstvo, NVO Hope and Homes for Children iz Sarajeva i Centri za socijalni rad sa područja USK-a kantona.
+              </p>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-2 text-center">
+              <img src="assets/img/slika34.jpg" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div><!-- End Tab Content Item -->
+
+        <div class="tab-pane fade" id="features-tab-2">
+          <div class="row">
+            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+             
+              <p>
+                JU Dom za djecu bez roditeljskog staranja  djeluje na jednoj lokaciji kroz nekoliko organizacionih jedinica:
+              </p>
+              <ul>
+                <li><i class="bi bi-check2-all"></i> <span>Bebi odjel /odjel za bebe i djecu uzrasta do 6 godina,</span></li>
+                <li><i class="bi bi-check2-all"></i> <span>Školski odjel,</span></li>
+                <li><i class="bi bi-check2-all"></i> <span>Prihvatilište za djecu,</span></li>
+                <li><i class="bi bi-check2-all"></i> <span>Mobilni tim,</span></li>
+                <li><i class="bi bi-check2-all"></i> <span>Centar za edukaciju i savjetovanje.</span></li>
+              </ul>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-2 text-center">
+              <img src="assets/img/slika35.jpg" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div><!-- End Tab Content Item -->
+
+        <div class="tab-pane fade" id="features-tab-3">
+          <div class="row">
+            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+              <p>
+                U ostvarivanju postavljenih ciljeva Dom, polazi od opštih ciljeva. Konkretizacija i realizacija ovako postavljenih ciljeva odgoja zahtijeva da se u Domu sistematski i organizovano u zajednici sa drugim  faktorima, stvaraju uslovi za njihovu realizaciju, a naročito kroz obezbjeđivanje :
+              </p>
+              <ul>
+                <li><i class="bi bi-check2-all"></i> <span>uslova za korekciju određenih poteškoća u rastu i razvoju,</span></li>
+                <li><i class="bi bi-check2-all"></i> <span>uslova za pravilan fizički razvoj odgajanika,</span></li>
+                <li><i class="bi bi-check2-all"></i> <span>uslova za normalan razvoj jezika, glasa i govora kod djece,</span></li>
+                <li><i class="bi bi-check2-all"></i> <span>uslova za socijalizaciju i resocijalizaciju,</span></li>
+                <li><i class="bi bi-check2-all"></i> <span>uslova za pravilnu i korisnu organizaciju slobodnog vremena odgajanika,</span></li>
+                <li><i class="bi bi-check2-all"></i> <span>uslova za optimalan, intelekualni i kognitivni razvoj.</span></li>
+              </ul>
+              <p class="fst-italic">
+                Djelatnost Doma je socijalno zbrinjavanje djece i omladine bez odgovarajućeg roditeljskog staranja, čiji je razvoj ometen porodičnim prilikama sve do obezbjeđenja uslova za njihov povratak u biološku porodicu, uključivanje u život izvan Doma ili dok im se ne pruži neka druga odgovarajuća zaštita.
+              </p>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-2 text-center">
+              <img src="assets/img/slika36.jpg" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div><!-- End Tab Content Item -->
+
+        <div class="tab-pane fade" id="features-tab-4">
+          <div class="row">
+            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+          
+              <p>
+                S obzirom da odgoj u domu obuhvata cijelu ličnost odgajanika, od velikog značaja su svi poznati pedagoški principi kao putokazi u radu, a neki od njih u domskom odgoju imaju posebno značenje i vrijednost, kao što su:
+              </p>
+              <ul>
+                <li><i class="bi bi-check2-all"></i> <span>Princip socijalizacije,</span></li>
+                <li><i class="bi bi-check2-all"></i> <span>Princip minimalne segregacije,</span></li>
+                <li><i class="bi bi-check2-all"></i> <span>Princip svjesne aktivnosti</span></li>
+              </ul>
+              <p>
+                Metode odgoja također će imati svakodnevnu primjenu, a načini i metode rada će se određivati u skladu sa potrebama pravilnog rasta i razvoja za dijete.
+              </p>
+              <ul>
+              <li><i class="bi bi-check2-all"></i> <span>Metoda poučavanja,</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Metoda podsticanja i pomaganja,</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Metoda sprečavanja i prisiljavanja /odvikavanje, preodgajanje/</span></li>
+              </ul>
+            <p> Odgojni rad u domu zahtijeva od odgajatelja primjenu određenih metoda radi upoznavanja I rada sa djetetom.</p>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-2 text-center">
+              <img src="assets/img/slika37.jpg" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div><!-- End Tab Content Item -->
+
+      </div>
+
+    </div>
+
+  </section><!-- /Features Section -->
+ 
+  <section id="faq" class="faq section">
+    <div class="container-fluid">
+      <div class="row gy-4">
+        
+        <!-- Slika će biti postavljena s lijeve strane -->
+        <div class="col-lg-5 order-1">
+          <img src="assets/img/slika38.jpg" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100" >
+        </div>
+  
+        <!-- Ostatak sadržaja s desne strane -->
+        <div class="col-lg-7 d-flex flex-column justify-content-center order-2">
+          <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
+            <h3><span>Najčešći upiti </span></h3>
+            <p>
+             U nastavku Vam prikazujemo par najčešće postavljenih pitanja našoj ustanovi.
+            </p>
+          </div>
+  
+          <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
+            <div class="faq-item faq-active">
+              <i class="faq-icon bi bi-question-circle"></i>
+              <h3>Kako mogu postati volonter u domu za nezbrinutu djecu?</h3>
+              <div class="faq-content">
+                <p>Da biste postali volonter, trebate kontaktirati dom za nezbrinutu djecu putem njihove službene web stranice, telefona ili osobno. Nakon toga, najčešće ćete morati ispuniti prijavni obrazac i proći razgovor s osobljem doma.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div>
+            <!-- End Faq item -->
+  
+            <div class="faq-item">
+              <i class="faq-icon bi bi-question-circle"></i>
+              <h3>Kako mogu donirati novac ili stvari domu za nezbrinutu djecu?</h3>
+              <div class="faq-content">
+                <p>Donirati možete preko naše web stranice. Osim novčanih donacija, možete donirati i stvari kao što su odjeća, školski pribor, igračke, higijenske potrepštine i slično.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div>
+            <!-- End Faq item -->
+  
+            <div class="faq-item">
+              <i class="faq-icon bi bi-question-circle"></i>
+              <h3>Koje su kvalifikacije potrebne za rad u domu za nezbrinutu djecu?</h3>
+              <div class="faq-content">
+                <p> Rad u domu za nezbrinutu djecu zahtijeva određene kvalifikacije koje se razlikuju ovisno o poziciji. Za odgajatelje, najčešće se traži diploma iz socijalnog rada, pedagogije, psihologije ili sličnih humanističkih znanosti, kao i iskustvo rada s djecom. Pored formalnih kvalifikacija, bitne su i osobne osobine kao što su empatija, strpljenje i sposobnost rada u timskom okruženju.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div>
+            <!-- End Faq item -->
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>Navigacija</h4>
+          <ul>
+            <li><a href="/home">Početna</a></li>
+            <li><a href="/galerija">Galerija</a></li>
+            <li><a href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a href="/kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>O nama</h4>
+          <ul>
+            <li><a href="/onama">O domu</a></li>
+            <li><a href="/menadzment">Menadžment</a></li>
+            <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+            <li><a href="/donatori">Donatori</a></li>
+      
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Propisi</h4>
+          <ul>
+            <li><a href="/prikaz-pravilnici">Pravilnici</a></li>
+            <li><a href="/prikaz-izvjestaji">Izvještaji i planovi</a></li>
+            <li><a href="/prikaz-sporazumi">Sporazumi o saradnji</a></li> 
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Društvene mreže</h4>
+          <div class="social-links">
+            <a href="#"><i class="bi bi-facebook" ></i></a>
+                  <a href="#"><i class="bi bi-instagram" ></i></a>
+                  <a href="#"><i class="bi bi-envelope" ></i></a>
+                  <a href="#"><i class="bi bi-twitter" ></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+ </footer>
+ <div class="footerBottom">
+  <p>Pravila privatnosti / &copy; JU Dom za djecu bez roditeljskog staranja USK-a</p>
+</div>
+
+

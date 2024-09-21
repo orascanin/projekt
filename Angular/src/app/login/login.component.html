@@ -1,0 +1,54 @@
+
+<body>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+      <!-- Company Logo -->
+      <div class="text-center mb-3 mt-5">
+        <img src="/assets/img/logo.png" width="250px" alt="Company Logo">
+      </div>
+      
+      <div class="text-center mb-4">
+        <h6 style="  font-family: 'Open Sans', sans-serif;">Prijavite se </h6>
+      </div>
+      
+      <!-- Email Input -->
+      <div class="form-input">
+        <span><i class="bi bi-envelope"></i></span>
+        <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="Email adresa" required>
+      </div>
+      
+      <!-- Password Input with Toggle Icon -->
+      <div class="form-input">
+        <span><i class="bi bi-lock"></i></span>
+        <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="Lozinka" required>
+        <i class="bi bi-eye field-icon toggle-password icon" style="color: #e91e63;" (click)="togglePasswordVisibility()"></i>
+      </div>
+      
+      <!-- Remember Me Checkbox -->
+      <div class="row mb-3">
+        <div class="col-auto d-flex align-items-center">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" id="rememberMe" name="rememberMe" class="custom-control-input" [(ngModel)]="rememberMe">
+            <label class="custom-control-label" for="rememberMe" style="color: #777;">Zapamti me</label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Login Button -->
+      <div class="mb-3"> 
+        <button type="submit" class="btn btn-primary btn-block custom-login-btn" [disabled]="!loginForm.form.valid" style="display: flex;justify-content: center;">Login</button>
+      </div>
+      
+      <!-- Error Message -->
+      <div *ngIf="error" class="alert alert-danger " role="alert">
+        {{ error }}
+      </div>
+      
+      <!-- Register Link -->
+      <div class="text-center mb-5" style="color: #777;">
+        Niste registrovani? <a [routerLink]="['/register']" class="register-link">Registracija</a>
+      </div>
+    </form>
+    
+      
+      </body>
+      

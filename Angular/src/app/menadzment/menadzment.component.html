@@ -1,0 +1,218 @@
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container">
+      <div class="header-container d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <img src="assets/img/logo.png" alt="" class="img-fluid" style="width: 200px;height: 500px;position:center;">
+        </div>
+  
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="/home">Početna</a></li>
+            <li class="dropdown"><a href="#"><span>O nama</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="/onama">O domu</a></li>
+                <li><a href="/menadzment">Menadžment</a></li>
+                <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+                <li><a href="/donatori">Donatori</a></li>
+              </ul>
+            </li>
+            <li><a class="nav-link scrollto" href="/galerija">Galerija</a></li>
+            <li><a class="nav-link scrollto" href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a class="nav-link scrollto" href="/kontakt">Kontakt</a></li>
+            
+            <!-- Prikazivanje linkova na osnovu prijave -->
+            <li *ngIf="!isLoggedIn"><a class="nav-link scrollto" href="/login">Login</a></li>
+            <li *ngIf="!isLoggedIn"><a class="getstarted scrollto" href="/register" style="background-color: #e91e63;">Signup</a></li>
+            
+            <!-- Meni koji se prikazuje nakon prijave -->
+            <li *ngIf="isLoggedIn" id="profile-link" class="dropdown">
+              <a href="#"><i class="bi bi-person-circle" style="font-size: 25px;margin-right: 8px;"></i><span>{{ userName }}</span> <i class="bi bi-chevron-down" style="  margin-right: 10px;"></i></a>
+              <ul>
+                <li><a href="/profile">Moj Profil</a></li>
+                <li><a href="/moje-donacije">Moje Donacije</a></li>
+                <li><a href="/logout" (click)="logout()">Logout <i class="bi bi-box-arrow-in-right" style="font-size: 15px;"></i></a></li>
+              </ul>
+            </li>
+          </ul>
+          <i id="mobile-nav-toggle" class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        
+      </div><!-- End Header Container -->
+    </div>
+  </header><!-- End Header -->
+  <main id="main">
+      <!-- Page Title -->
+      <div class="page-title dark-background" data-aos="fade" style="	background-color: rgb(203 213 225);">
+        <div class="container position-relative">
+        <!--  <h1 style="font-family: Edwardian Script ITC;color: #e91e63;">O nama</h1> -->
+          <p style="position: relative;font-size: 15px;text-align: right;"><i><i class="bx bxs-quote-alt-left quote-icon-left" style="color: #e91e63;"></i>Naša vizija je posvetiti naše iskustvo zadovoljavanju potreba korisnika i održavati trajno visok kvalitet u svim segmentima pružanja socijalnih usluga, a za dobrobit lokalne i šire društvene zajednice odnosno kontinuirano kvalitetno pružanje usluga cjelokupnog zbrinjavanja, odgoja, školovanja, zdravstvene njege djece bez roditelja i djece čiji je razvoj ometen porodičnim prilikama. <i class="bx bxs-quote-alt-right quote-icon-right" style="color: #e91e63;"></i></i></p>
+          <br>
+          <nav class="breadcrumbs">
+            <ol>
+              <li><a href="/home" style="color: #e91e63;">Početna</a></li>
+              <li class="current" style="color: white;">Menadžment</li>
+            </ol>
+          </nav>
+        </div>
+      </div><!-- End Page Title -->
+  </main>
+  <section id="trainers" class="section trainers">
+
+    <div class="container">
+
+      <div class="row gy-5">
+
+        <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
+          <div class="member-img">
+            <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+            <div class="social">
+              <a href="#"><i class="bi bi-twitter-x" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-facebook" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-instagram" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-linkedin" style="color: #e91e63;"></i></a>
+            </div>
+          </div>
+          <div class="member-info text-center">
+            <h4>Šećerbegović Amila</h4>
+            <span class="">Direktor</span>
+            <p>Planira, organizira i vodi proces rada, zastupa Dom prema trećim osobama i odgovara za zakonitost rada. </p>
+          </div>
+        </div><!-- End Team Member -->
+
+        <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="200">
+          <div class="member-img">
+            <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+            <div class="social">
+              <a href="#"><i class="bi bi-twitter-x" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-facebook" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-instagram" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-linkedin" style="color: #e91e63;"></i></a>
+            </div>
+          </div>
+          <div class="member-info text-center">
+            <h4>Muharemović Amir</h4>
+            <span class="">Pomoćnik direktora</span>
+            <p>Zadužen za pomoć direktoru prilikom poslova planiranja, organiziranja i vođenja procesa rada.</p>
+          </div>
+        </div><!-- End Team Member -->
+
+        <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="300">
+          <div class="member-img">
+            <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+            <div class="social">
+              <a href="#"><i class="bi bi-twitter-x" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-facebook" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-instagram" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-linkedin" style="color: #e91e63;"></i></a>
+            </div>
+          </div>
+          <div class="member-info text-center">
+            <h4>Bektić Emir</h4>
+            <span class="">Služba za pravne, opće i zajedničke poslove</span>
+            <p>Služba za pravne i opće poslove  je odjel unutar organizacije koja se bavi širokim spektrom pravnih i administrativnih zadataka.</p>
+          </div>
+        </div><!-- End Team Member -->
+
+        <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="400">
+          <div class="member-img">
+            <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
+            <div class="social">
+              <a href="#"><i class="bi bi-twitter-x" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-facebook" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-instagram" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-linkedin" style="color: #e91e63;"></i></a>
+            </div>
+          </div>
+          <div class="member-info text-center">
+            <h4>Tupaković Amela</h4>
+            <span class="">Služba finansija</span>
+            <p>Finansijska služba ima ključnu ulogu u upravljanju budžetom, računovodstvom, finansijskim planiranjem, kontrolom i analizom troškova.</p>
+          </div>
+        </div><!-- End Team Member -->
+
+        <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="500">
+          <div class="member-img">
+            <img src="assets/img/team/team-5.jpg" class="img-fluid" alt="">
+            <div class="social">
+              <a href="#"><i class="bi bi-twitter-x" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-facebook" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-instagram" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-linkedin" style="color: #e91e63;"></i></a>
+            </div>
+          </div>
+          <div class="member-info text-center">
+            <h4>Avdo Dedić</h4>
+            <span class="">Predstavnik sručnog tima<br></span>
+            <p>Socijalni radnik odmah nakon smještaja djeteta utvrđuje njegov odgojno obrazovni status i kontaktira predškolske i školske ustanove.</p>
+          </div>
+        </div><!-- End Team Member -->
+
+        <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="600">
+          <div class="member-img">
+            <img src="assets/img/team/team-6.jpg" class="img-fluid" alt="">
+            <div class="social">
+              <a href="#"><i class="bi bi-twitter-x" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-facebook" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-instagram" style="color: #e91e63;"></i></a>
+              <a href="#"><i class="bi bi-linkedin" style="color: #e91e63;"></i></a>
+            </div>
+          </div>
+          <div class="member-info text-center">
+            <h4>Nejra Latić</h4>
+            <span class="">Psihologinja</span>
+            <p>Psihologinja je u radu s korisnicima prvenstveno usmjerena jačanju njihovih kapaciteta i pripremanju za samostalan život nakon izlaska iz Doma.</p>
+          </div>
+        </div><!-- End Team Member -->
+
+      </div>
+
+    </div>
+
+  </section><!-- /Trainers Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>Navigacija</h4>
+          <ul>
+            <li><a href="/home">Početna</a></li>
+            <li><a href="/galerija">Galerija</a></li>
+            <li><a href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a href="/kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>O nama</h4>
+          <ul>
+            <li><a href="/onama">O domu</a></li>
+            <li><a href="/menadzment">Menadžment</a></li>
+            <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+            <li><a href="/donatori">Donatori</a></li>
+      
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Propisi</h4>
+          <ul>
+            <li><a href="/prikaz-pravilnici">Pravilnici</a></li>
+            <li><a href="/prikaz-izvjestaji">Izvještaji i planovi</a></li>
+            <li><a href="/prikaz-sporazumi">Sporazumi o saradnji</a></li> 
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Društvene mreže</h4>
+          <div class="social-links">
+            <a href="#"><i class="bi bi-facebook" ></i></a>
+                  <a href="#"><i class="bi bi-instagram" ></i></a>
+                  <a href="#"><i class="bi bi-envelope" ></i></a>
+                  <a href="#"><i class="bi bi-twitter" ></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+ </footer>
+ <div class="footerBottom">
+  <p>Pravila privatnosti / &copy; JU Dom za djecu bez roditeljskog staranja USK-a</p>
+</div>

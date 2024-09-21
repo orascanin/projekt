@@ -1,0 +1,329 @@
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container">
+      <div class="header-container d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <img src="assets/img/logo.png" alt="" class="img-fluid" style="width: 200px;height: 500px;position:center;">
+        </div>
+  
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="/home">Početna</a></li>
+            <li class="dropdown"><a href="#"><span>O nama</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="/onama">O domu</a></li>
+                <li><a href="/menadzment">Menadžment</a></li>
+                <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+                <li><a href="/donatori">Donatori</a></li>
+              </ul>
+            </li>
+            <li><a class="nav-link scrollto" href="/galerija">Galerija</a></li>
+            <li><a class="nav-link scrollto" href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a class="nav-link scrollto" href="/kontakt">Kontakt</a></li>
+            
+            <!-- Prikazivanje linkova na osnovu prijave -->
+            <li *ngIf="!isLoggedIn"><a class="nav-link scrollto" href="/login">Login</a></li>
+            <li *ngIf="!isLoggedIn"><a class="getstarted scrollto" href="/register" style="background-color: #e91e63;">Signup</a></li>
+            
+            <!-- Meni koji se prikazuje nakon prijave -->
+            <li *ngIf="isLoggedIn" id="profile-link" class="dropdown">
+              <a href="#"><i class="bi bi-person-circle" style="font-size: 25px;margin-right: 8px;"></i><span>{{ userName }}</span> <i class="bi bi-chevron-down" style="  margin-right: 10px;"></i></a>
+              <ul>
+                <li><a href="/profile">Moj Profil</a></li>
+                <li><a href="/moje-donacije">Moje Donacije</a></li>
+                <li><a href="/logout" (click)="logout()">Logout <i class="bi bi-box-arrow-in-right" style="font-size: 15px;"></i></a></li>
+              </ul>
+            </li>
+          </ul>
+          <i id="mobile-nav-toggle" class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        
+      </div><!-- End Header Container -->
+    </div>
+  </header><!-- End Header -->
+  
+  
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+      <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
+        <h1>Dobrodošli na zvaničnu stranicu Doma za nezbrinutu djecu</h1>
+        <h2>Ako želite pomoći u radu doma, možete to učiniti putem donacije.</h2>
+        <a href="javascript:void(0)" class="btn-get-started scrollto" (click)="doniraj()">Doniraj</a>
+       <!--<a href="/doniraj" class="btn-get-started scrollto">Doniraj</a>-->
+      </div>
+    </section><!-- End Hero -->
+    
+    <main id="main">
+  
+      <!-- ======= Clients Section ======= -->
+      <section id="clients" class="clients">
+        <div class="container">
+  
+          <div class="row">
+  
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
+              <img src="assets/img/uniceff.jpg" class="img-fluid" alt="">
+            </div>
+  
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="200">
+              <img src="assets/img/world.png" class="img-fluid" alt="">
+            </div>
+  
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="300">
+              <img src="assets/img/save.png" class="img-fluid" alt="">
+            </div>
+  
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="400">
+              <img src="assets/img/slika3.png" class="img-fluid" alt="">
+            </div>
+  
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="500">
+              <img src="assets/img/slika4.png" class="img-fluid" alt="">
+            </div>
+  
+            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="600">
+              <img src="assets/img/slika5.png" class="img-fluid" alt="">
+            </div>
+  
+          </div>
+  
+        </div>
+      </section><!-- End Clients Section -->
+      <section id="about" class="about">
+        <div class="container">
+    
+          <div class="row content">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+              <h2 style="color: #444444;font-family: Bradley Hand ITC;">Naši ciljevi</h2>
+              <br>
+              <h3 style="color: #444444;"><i>Svako dijete zaslužuje da živi u sigurnim i odgajateljskim domovima
+                gdje se mogu osjećati cijenjeni i voljeni.</i></h3>
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="200">
+              <p>
+                U ostvarivanju postavljenih ciljeva Dom, polazi od opštih ciljeva. Konkretizacija i realizacija ovako postavljenih ciljeva odgoja zahtijeva da se u Domu sistematski i organizovano u zajednici sa drugim  faktorima, stvaraju uslovi za njihovu realizaciju, a naročito kroz obezbjeđivanje :
+              </p>
+              <ul>
+                <li><i class="bi bi-check-all" style="color: #e91e63;"> </i> uslova za korekciju određenih poteškoća u rastu i razvoju</li>
+                <li><i class="bi bi-check-all" style="color: #e91e63;"> </i> uslova za pravilan fizički razvoj odgajanika</li>
+                <li><i class="bi bi-check-all" style="color: #e91e63;"> </i> uslova za optimalan, intelekualni i kognitivni razvoj</li>
+                <li><i class="bi bi-check-all" style="color: #e91e63;"> </i> uslova za socijalizaciju i resocijalizaciju.</li>
+              </ul>
+              <p class="fst-italic">
+     
+    Ustanova obezbjeđuje programe koji su posebno prilagođeni mogućnostima i interesovanjima svakog djeteta.
+              </p>
+            </div>
+          </div>
+    
+        </div>
+      </section>
+          <!-- Stats Section -->
+          <section id="stats" class="stats section">
+  
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+      
+              <div class="row gy-4">
+      
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                  <i class="bi bi-person-arms-up" style="color: #e91e63;"></i>
+                  <div class="stats-item">
+                    <span data-purecounter-start="0" data-purecounter-end="34" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Bebi odjel</p>
+                  </div>
+                </div><!-- End Stats Item -->
+      
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                  <i class="bi bi-mortarboard" style="color: #e91e63;"></i>
+                  <div class="stats-item">
+                    <span data-purecounter-start="0" data-purecounter-end="37" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Školski odjel</p>
+                  </div>
+                </div><!-- End Stats Item -->
+      
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                  <i class="bi bi-wallet-fill" style="color: #e91e63;"></i>
+                  <div class="stats-item">
+                    <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Prebivalište</p>
+                  </div>
+                </div><!-- End Stats Item -->
+      
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                  <i class="bi bi-heart" style="color: #e91e63;"></i>
+                  <div class="stats-item">
+                    <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Materinski dom</p>
+                  </div>
+                </div><!-- End Stats Item -->
+      
+              </div>
+      
+            </div>
+      
+          </section><!-- /Stats Section -->
+  
+      <!-- About Section -->
+      <section id="about" class="about section">
+  
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+  
+          <div class="row gy-4">
+            <div class="col-lg-6 2">
+              <img src="assets/img/slika33.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 content">
+             <h3 style="font-family: Bradley Hand ITC;color: #444444;font-size: 32px;"><i>Naša misija</i></h3>
+              <br>
+              <br>
+             <i> <p class="fst-italic">
+                Naša misija je smanjiti dužinu boravka djece u instituciji i osigurati njihov povratak u porodicu porijekla. Kroz aktivnosti predviđene procesom transformacije Doma uvodit ćemo niz novih socijalnih usluga, a koje će moći odgovoriti zahtjevima socijalnih potreba korisnika i stanjem lokalne zajednice, te pružiti uslove podjednakih šansi za prosperitet, emocionalnu i egzistencijalnu sigurnost djece i njihovih porodica.
+              </p></i>
+  
+            </div>
+          </div>
+  
+        </div>
+  
+      </section><!-- /About Section -->
+  
+  
+     
+      <section id="testimonials" class="testimonials section light-background" style="background-color: #f6f6f7;">
+          <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper init-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <div class="row gy-4 justify-content-center">
+                      <div class="col-lg-6">
+                        <div class="testimonial-content">
+                          <p>
+                            <i class="bi bi-quote quote-icon-left"></i>
+                            <span>Svi ideali ovog svijeta ne vrijede suze jednog djeteta.</span>
+                            <i class="bi bi-quote quote-icon-right"></i>
+                          </p>
+                          <h3>Fjodor Mihajlovič Dostojevski</h3>
+                          <h4>pisac</h4>
+                          <div class="stars">
+                            <i class="bi bi-feather" style="color: #e91e63;size: 200px;"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2 text-center">
+                        <img src="assets/img/fjodor.jpg" class="img-fluid testimonial-img" alt="" >
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End testimonial item -->
+      
+                <!-- Dodaj ostale testimonial slajdove ovdje na sličan način -->
+      
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <div class="row gy-4 justify-content-center">
+                      <div class="col-lg-6">
+                        <div class="testimonial-content">
+                          <p>
+                            <i class="bi bi-quote quote-icon-left"></i>
+                            <span>  Najbolji način da djeca budu dobra je da ih učinite sretnima.</span>
+                            <i class="bi bi-quote quote-icon-right"></i>
+                          </p>
+                          <h3>Oscar Wilde</h3>
+                          <h4>pisac</h4>
+                          <div class="stars">
+                            <i class="bi bi-feather" style="color: #e91e63;size: 200px;"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2 text-center">
+                        <img src="assets/img/oscar.jpg" class="img-fluid testimonial-img" alt="" >
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End testimonial item -->
+      
+                <!-- Dodaj ostale testimonial slajdove ovdje -->
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <div class="row gy-4 justify-content-center">
+                      <div class="col-lg-6">
+                        <div class="testimonial-content">
+                          <p>
+                            <i class="bi bi-quote quote-icon-left"></i>
+                            <span> Najveći dar koji možete dati svojoj djeci su korijeni odgovornosti i krila nezavisnosti.</span>
+                            <i class="bi bi-quote quote-icon-right"></i>
+                          </p>
+                          <h3>Denis Waitley</h3>
+                          <h4>motivacioni govornik</h4>
+                          <div class="stars">
+                            <i class="bi bi-feather" style="color: #e91e63;size: 200px;"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2 text-center">
+                        <img src="assets/img/denis.jpg" class="img-fluid testimonial-img" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End testimonial item -->
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </section><!-- /Testimonials Section -->
+      
+    </main>
+    <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="footer-col">
+              <h4>Navigacija</h4>
+              <ul>
+                <li><a href="/home">Početna</a></li>
+                <li><a href="/galerija">Galerija</a></li>
+                <li><a href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+                <li><a href="/kontakt">Kontakt</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>O nama</h4>
+              <ul>
+                <li><a href="/onama">O domu</a></li>
+                <li><a href="/menadzment">Menadžment</a></li>
+                <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+                <li><a href="/donatori">Donatori</a></li>
+          
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Propisi</h4>
+              <ul>
+                <li><a href="/prikaz-pravilnici">Pravilnici</a></li>
+                <li><a href="/prikaz-izvjestaji">Izvještaji i planovi</a></li>
+                <li><a href="/prikaz-sporazumi">Sporazumi o saradnji</a></li> 
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Društvene mreže</h4>
+              <div class="social-links">
+                <a href="#"><i class="bi bi-facebook" ></i></a>
+                      <a href="#"><i class="bi bi-instagram" ></i></a>
+                      <a href="#"><i class="bi bi-envelope" ></i></a>
+                      <a href="#"><i class="bi bi-twitter" ></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+    
+     </footer>
+     <div class="footerBottom">
+      <p>Pravila privatnosti / &copy; JU Dom za djecu bez roditeljskog staranja USK-a</p>
+  </div>
+  
+  
+   
+  
+  
+  
+  

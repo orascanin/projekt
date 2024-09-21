@@ -1,0 +1,59 @@
+<body>
+    <div *ngIf="isLoggedIn && userRole === 'donor'">
+        <div class="container section-title" data-aos="fade-up">
+          <h2 style="font-family: Edwardian Script ITC;color: #e91e63;">Donirajte</h2>
+          <p style="color: white;">Novac donirate u valuti BAM.</p>
+        </div><!-- End Section Title -->
+        <div class="donation-form">
+          <form (ngSubmit)="createDonation()" #donationForm="ngForm">
+            <div class="form-group">
+              <label for="amount" style="color: #e91e63;">Iznos donacije:</label>
+              <input id="amount" type="number" [(ngModel)]="amount" name="amount" placeholder="Enter donation amount"
+                min="0.01" step="0.01" required class="form-control" style="box-shadow: 0 0 0 0.05rem #dc3545;" />
+            </div>
+            <div id="card-element" class="form-group">
+              <!-- Stripe card element -->
+            </div>
+            <button type="submit" [disabled]="!donationForm.form.valid" class="btn btn-primary">
+              Doniraj
+            </button>
+          </form>
+    
+        </div></div>
+             <!-- Success Modal -->
+                        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="successModalLabel">Donacija uspješna!</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                Hvala Vam na doniranom novcu.
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="closeSuccessModalAndRedirect()">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      
+                      <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="errorModalLabel">Donacija neuspješna!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Došlo je do pogreške, molimo Vas pokušajte kasnije.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </body>

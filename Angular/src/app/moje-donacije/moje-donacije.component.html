@@ -1,0 +1,298 @@
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container">
+      <div class="header-container d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <img src="assets/img/logo.png" alt="" class="img-fluid" style="width: 200px;height: 500px;position:center;">
+        </div>
+  
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="/home">Početna</a></li>
+            <li class="dropdown"><a href="#"><span>O nama</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="/onama">O domu</a></li>
+                <li><a href="/menadzment">Menadžment</a></li>
+                <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+                <li><a href="/donatori">Donatori</a></li>
+              </ul>
+            </li>
+            <li><a class="nav-link scrollto" href="/galerija">Galerija</a></li>
+            <li><a class="nav-link scrollto" href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a class="nav-link scrollto" href="/kontakt">Kontakt</a></li>
+            
+            <!-- Prikazivanje linkova na osnovu prijave -->
+            <li *ngIf="!isLoggedIn"><a class="nav-link scrollto" href="/login">Login</a></li>
+            <li *ngIf="!isLoggedIn"><a class="getstarted scrollto" href="/register" style="background-color: #e91e63;">Signup</a></li>
+            
+            <!-- Meni koji se prikazuje nakon prijave -->
+            <li *ngIf="isLoggedIn" id="profile-link" class="dropdown">
+              <a href="#"><i class="bi bi-person-circle" style="font-size: 25px;margin-right: 8px;"></i><span>{{ userName }}</span> <i class="bi bi-chevron-down" style="  margin-right: 10px;"></i></a>
+              <ul>
+                <li><a href="/profile">Moj Profil</a></li>
+                <li><a href="/moje-donacije">Moje Donacije</a></li>
+                <li><a href="/logout" (click)="logout()">Logout <i class="bi bi-box-arrow-in-right" style="font-size: 15px;"></i></a></li>
+              </ul>
+            </li>
+          </ul>
+          <i id="mobile-nav-toggle" class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        
+      </div><!-- End Header Container -->
+    </div>
+  </header><!-- End Header -->
+<main id="main">
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="	background-color: rgb(203 213 225);">
+      <div class="container position-relative">
+      <h1 style="font-family: Edwardian Script ITC;color: #e91e63;"></h1>
+        <p></p>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="/home" style="color: #e91e63;">Početna</a></li>
+            <li class="current" style="color: white;">Moje donacije</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+</main>
+<!-- Tabs Section -->
+
+<section id="tabs" class="tabs section">
+    <div *ngIf="isLoggedIn && userRole === 'donor'">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <div class="col-lg-3">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tabs-tab-1">Top donacije</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tabs-tab-2">Vaše donacije</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tabs-tab-3">Neuspjele donacije</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tabs-tab-4">Ukupan iznos donacija</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="tabs-tab-1">
+                <div class="row">
+                  <div class="col-lg-12 details order-2 order-lg-1">
+                    <h3>Top donacije</h3>
+                    <p class="fst-italic">U nastavku pogledajte TOP 3 Vaše donacije.</p>
+                    <section class="section dashboard">
+                        <div class="row" style="flex-wrap: nowrap;" *ngFor="let donation of topThreeDonations">
+                             <!-- Sales Card -->
+                              <div class="col-xxl-4 col-md-6">
+                                <div class="card info-card sales-card">
+                                  <div class="card-body">
+                                    <h5 class="card-title">Donacija <span>| {{ donation.donation_date }}</span></h5>
+                  
+                                    <div class="d-flex align-items-center">
+                                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-currency-dollar" style="color: #e91e63"></i>
+                                      </div>
+                                      <div class="ps-3">
+                                        <h6>{{ donation.amount | currency:'BAM' }}</h6>
+                                        <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"></span>
+                  
+                                      </div>
+                                    </div>
+                                  </div>
+                           
+                                </div>
+                        
+                              </div><!-- End Sales Card -->
+
+                           
+                  
+                              
+                           </div></section>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="tab-pane" id="tabs-tab-2">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Vaše donacije</h3>
+                    <p class="fst-italic"></p>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title">Lista donacija</h5>
+                            <!-- Default Table -->
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Iznos</th>
+                                  <th scope="col">Datum</th>
+                                  <th scope="col">ID transakcije</th>
+                                  <th scope="col">Status plaćanja</th>
+                                </tr>
+                              </thead>
+                              <tbody *ngFor="let donation of donations, let i = index">
+                                <tr>
+                                  <th scope="row">{{ i + 1 }}</th>
+                                  <td> {{ donation.amount }} KM</td>
+                                  <td> {{ donation.donation_date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                                  <td>{{ donation.transaction_id }}</td>
+                                  <td>{{ donation.payment_status }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <!-- End Default Table -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/departments-2.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="tab-pane" id="tabs-tab-3">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Neuspjele donacije</h3>
+                    <p class="fst-italic"></p>
+                    <div class="row">
+                        <div class="col-lg-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Lista donacija</h5>
+                              <!-- Default Table -->
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Iznos</th>
+                                    <th scope="col">Datum</th>
+                                    <th scope="col">ID transakcije</th>
+                                    <th scope="col">Status plaćanja</th>
+                                  </tr>
+                                </thead>
+                                <tbody *ngFor="let donation of failedDonations; let i = index">
+                                  <tr>
+                                    <th scope="row">{{ i + 1 }}</th>
+                                    <td> {{ donation.amount }} KM</td>
+                                    <td> {{ donation.donation_date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                                    <td>{{ donation.transaction_id }}</td>
+                                    <td>{{ donation.payment_status }}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <!-- End Default Table -->
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/departments-3.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tabs-tab-4">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Ukupan iznos donacija</h3>
+                            <section class="section dashboard">
+                              <div class="row">
+                                <!-- Ne treba *ngFor jer totalDonations nije niz -->
+                                <div class="col-xxl-4 col-md-6">
+                                  <div class="card info-card sales-card">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Ukupan iznos</h5>
+                                      <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-currency-dollar" style="color: #e91e63"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                          <h6>{{ totalDonations | currency:'BAM' }}</h6>
+                                          <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"></span>
+                                     
+                                     
+                                 
+                               
+                                        </div></div></div></div></div></div>
+                   
+                            </section>
+                          </div>
+                          <div class="col-lg-4 text-center order-1 order-lg-2">
+                            <img src="assets/img/departments-4.jpg" alt="" class="img-fluid">
+                          </div>
+                        </div>
+                      </div>
+                      
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/departments-4.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+      </div></div>
+        
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>Navigacija</h4>
+          <ul>
+            <li><a href="/home">Početna</a></li>
+            <li><a href="/galerija">Galerija</a></li>
+            <li><a href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a href="/kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>O nama</h4>
+          <ul>
+            <li><a href="/onama">O domu</a></li>
+            <li><a href="/menadzment">Menadžment</a></li>
+            <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+            <li><a href="/donatori">Donatori</a></li>
+      
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Propisi</h4>
+          <ul>
+            <li><a href="/prikaz-pravilnici">Pravilnici</a></li>
+            <li><a href="/prikaz-izvjestaji">Izvještaji i planovi</a></li>
+            <li><a href="/prikaz-sporazumi">Sporazumi o saradnji</a></li> 
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Društvene mreže</h4>
+          <div class="social-links">
+            <a href="#"><i class="bi bi-facebook" ></i></a>
+                  <a href="#"><i class="bi bi-instagram" ></i></a>
+                  <a href="#"><i class="bi bi-envelope" ></i></a>
+                  <a href="#"><i class="bi bi-twitter" ></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+ </footer>
+ <div class="footerBottom">
+  <p>Pravila privatnosti / &copy; JU Dom za djecu bez roditeljskog staranja USK-a</p>
+</div>
+
+
+
+
+
+

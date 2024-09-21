@@ -1,0 +1,92 @@
+
+<div style=" background-image: url('/assets/img/slika39.jpg');background-size: cover; background-position: center center;background-repeat: no-repeat;">
+    <div class="register-form" >
+      <div class="text-center mb-3 mt-5">
+        <img src="/assets/img/logo.png" width="150px" alt="Company Logo">
+      </div>
+      
+      <div class="text-center mb-4">
+        <h6 style="font-family: 'Open Sans', sans-serif;">Kreirajte svoj račun</h6>
+      </div>
+    
+      <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <div class="form-input">
+          <span><i class="bi bi-person" style="color: #e91e63;"></i></span>
+          <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" placeholder="Ime" required>
+        </div>
+    
+        <div class="form-input">
+          <span><i class="bi bi-person" style="color: #e91e63;"></i></span>
+          <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" placeholder="Prezime" required>
+        </div>
+    
+        <div class="form-input">
+          <span><i class="bi bi-envelope" style="color: #e91e63;"></i></span>
+          <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="Email adresa" required>
+        </div>
+    
+        <div class="form-input">
+          <span><i class="bi bi-gender-ambiguous" style="color: #e91e63;"></i></span>
+          <select id="gender" name="gender" [(ngModel)]="gender" required>
+            <option value="" disabled selected>Odaberite spol</option>
+            <option value="male">Muško</option>
+            <option value="female">Žensko</option>
+            <option value="other">Ostalo</option>
+          </select>
+        </div>
+    
+        <div class="form-input">
+          <span><i class="bi bi-telephone" style="color: #e91e63;"></i></span>
+          <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="phoneNumber" placeholder="Kontakt telefon" required>
+        </div>
+    
+        <div class="form-input">
+          <span><i class="bi bi-geo-alt" style="color: #e91e63;"></i></span>
+          <input type="text" id="country" name="country" [(ngModel)]="country" placeholder="Država" required>
+        </div>
+    
+        <div class="form-input">
+          <span><i class="bi bi-geo-alt" style="color: #e91e63;"></i></span>
+          <input type="text" id="city" name="city" [(ngModel)]="city" placeholder="Grad" required>
+        </div>
+    
+        <div class="form-input">
+          <span><i class="bi bi-geo-alt" style="color: #e91e63;"></i></span>
+          <input type="text" id="address" name="address" [(ngModel)]="address" placeholder="Adresa" required>
+        </div>
+    
+        <div class="form-input">
+          <span><i class="bi bi-postcard" style="color: #e91e63;"></i></span>
+          <input type="text" id="postalCode" name="postalCode" [(ngModel)]="postalCode" placeholder="Poštanski broj" required>
+        </div>
+    
+        <div class="form-input">
+          <span><i class="bi bi-lock" style="color: #e91e63;"></i></span>
+          <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="Lozinka" required>
+          <i class="bi bi-eye field-icon toggle-password icon" style="color: #e91e63;" (click)="togglePasswordVisibility()"></i>
+        </div>
+    
+        <div class="form-input">
+          <span><i class="bi bi-lock" style="color: #e91e63;"></i></span>
+          <input type="password" id="confirmPassword"  name="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Potvrdite lozinku" required>
+          <i class="bi bi-eye field-icon toggle-password icon" style="color: #e91e63;" (click)="togglePasswordVisibility()"></i>
+        </div>
+    
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary btn-block custom-register-btn" [disabled]="!registerForm.form.valid" style="display: flex;justify-content: center;">Registracija</button>
+        </div>
+    
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+          {{ error }}
+        </div>
+    
+        <div class="text-center mb-5" style="color: #777;">
+          Već imate račun? <a [routerLink]="['/login']" class="login-link">Prijava</a>
+        </div>
+      </form>
+    </div>
+    </div>
+    
+    
+    
+    

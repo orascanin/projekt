@@ -1,0 +1,213 @@
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container">
+      <div class="header-container d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <img src="assets/img/logo.png" alt="" class="img-fluid" style="width: 200px;height: 500px;position:center;">
+        </div>
+  
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="/home">Početna</a></li>
+            <li class="dropdown"><a href="#"><span>O nama</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="/onama">O domu</a></li>
+                <li><a href="/menadzment">Menadžment</a></li>
+                <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+                <li><a href="/donatori">Donatori</a></li>
+              </ul>
+            </li>
+            <li><a class="nav-link scrollto" href="/galerija">Galerija</a></li>
+            <li><a class="nav-link scrollto" href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a class="nav-link scrollto" href="/kontakt">Kontakt</a></li>
+            
+            <!-- Prikazivanje linkova na osnovu prijave -->
+            <li *ngIf="!isLoggedIn"><a class="nav-link scrollto" href="/login">Login</a></li>
+            <li *ngIf="!isLoggedIn"><a class="getstarted scrollto" href="/register" style="background-color: #e91e63;">Signup</a></li>
+            
+            <!-- Meni koji se prikazuje nakon prijave -->
+            <li *ngIf="isLoggedIn" id="profile-link" class="dropdown">
+              <a href="#"><i class="bi bi-person-circle" style="font-size: 25px;margin-right: 8px;"></i><span>{{ userName }}</span> <i class="bi bi-chevron-down" style="  margin-right: 10px;"></i></a>
+              <ul>
+                <li><a href="/profile">Moj Profil</a></li>
+                <li><a href="/moje-donacije">Moje Donacije</a></li>
+                <li><a href="/logout" (click)="logout()">Logout <i class="bi bi-box-arrow-in-right" style="font-size: 15px;"></i></a></li>
+              </ul>
+            </li>
+          </ul>
+          <i id="mobile-nav-toggle" class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        
+      </div><!-- End Header Container -->
+    </div>
+  </header><!-- End Header -->
+  <main id="main">
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="	background-color: rgb(203 213 225);">
+      <div class="container position-relative">
+
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="/home" style="color: #e91e63;;">Početna</a></li>
+            <li class="current">Galerija</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+<!-- ======= Portfolio Section ======= -->
+<section id="portfolio" class="portfolio">
+<div class="container">
+
+  <div class="row" data-aos="fade-up">
+    <div class="col-lg-12 d-flex justify-content-center">
+      <ul id="portfolio-flters">
+        <li data-filter="*" class="filter-active">All</li>
+        <li data-filter=".filter-app">Okoliš</li>
+        <li data-filter=".filter-card">Hrana</li>
+        <li data-filter=".filter-web">Aktivnosti</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row portfolio-container" data-aos="fade-up">
+
+    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+      <img src="assets/img/slika15.jpg" style="height: 270px;width: 400px;" class="img-fluid" alt="">
+      <div class="portfolio-info">
+        <h4></h4>
+        <p></p>
+
+        <a href="assets/img/slika15.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" ><i class="bi bi-plus" style="left: 10px;position: absolute;"></i></a>
+
+      </div>
+    </div>
+
+
+    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+      <img src="assets/img/slika7.jpg" style="height: 270px;width: 400px;" class="img-fluid" alt="">
+      <div class="portfolio-info">
+        <h4></h4>
+        <p></p>
+        <a href="assets/img/slika7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" ><i class="bi bi-plus" style="left: 10px;position: absolute;"></i></a>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+      <img src="assets/img/slika14.jpg" style="height: 270px;width: 400px;" class="img-fluid" alt="">
+      <div class="portfolio-info">
+        <h4></h4>
+        <p></p>
+        <a href="assets/img/slika14.jpg" idata-gallery="portfolioGallery" class="portfolio-lightbox preview-link" ><i class="bi bi-plus" style="left: 10px;position: absolute;"></i></a>
+   
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+      <img src="assets/img/slika10.jpg" style="height: 313px;width: 400px;" class="img-fluid" alt="">
+      <div class="portfolio-info">
+        <h4></h4>
+        <p></p>
+        <a href="assets/img/slika10.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" ><i class="bi bi-plus" style="left: 10px;position: absolute;"></i></a>
+    
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+      <img src="assets/img/slika17.jpg" style="height: 313px;width: 400px;"  class="img-fluid" alt="">
+      <div class="portfolio-info">
+        <h4></h4>
+        <p></p>
+        <a href="assets/img/slika17.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"><i class="bi bi-plus" style="left: 10px;position: absolute;"></i></a>
+      
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+      <img src="assets/img/slika13.jpg" style="height: 313px;width: 400px;" class="img-fluid" alt="">
+      <div class="portfolio-info">
+        <h4></h4>
+        <p></p>
+        <a href="assets/img/slika13.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"><i class="bi bi-plus" style="left: 10px;position: absolute;"></i></a>
+      
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+      <img src="assets/img/slika9.jpg" style="height: 270px;width: 400px;" class="img-fluid" alt="">
+      <div class="portfolio-info">
+        <h4></h4>
+        <p></p>
+        <a href="assets/img/slika9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"><i class="bi bi-plus" style="left: 10px;position: absolute;"></i></a>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+      <img src="assets/img/slika16.jpg" style="height: 270px;width: 400px;" class="img-fluid" alt="">
+      <div class="portfolio-info">
+        <h4></h4>
+        <p></p>
+        <a href="assets/img/slika16.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"><i class="bi bi-plus" style="left: 10px;position: absolute;"></i></a>
+     
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+      <img src="assets/img/slika18.jpg" style="height: 270px;width: 400px;" class="img-fluid" alt="">
+      <div class="portfolio-info">
+        <h4></h4>
+        <p></p>
+        <a href="assets/img/slika18.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"><i class="bi bi-plus" style="left: 10px;position: absolute;"></i></a>
+    
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</section> 
+<footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>Navigacija</h4>
+          <ul>
+            <li><a href="/home">Početna</a></li>
+            <li><a href="/galerija">Galerija</a></li>
+            <li><a href="/prikaz-aktuelnosti">Aktuelnosti</a></li>
+            <li><a href="/kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>O nama</h4>
+          <ul>
+            <li><a href="/onama">O domu</a></li>
+            <li><a href="/menadzment">Menadžment</a></li>
+            <li><a href="/prikaz-nabavke">Javne nabavke</a></li>
+            <li><a href="/donatori">Donatori</a></li>
+      
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Propisi</h4>
+          <ul>
+            <li><a href="/prikaz-pravilnici">Pravilnici</a></li>
+            <li><a href="/prikaz-izvjestaji">Izvještaji i planovi</a></li>
+            <li><a href="/prikaz-sporazumi">Sporazumi o saradnji</a></li> 
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Društvene mreže</h4>
+          <div class="social-links">
+            <a href="#"><i class="bi bi-facebook" ></i></a>
+                  <a href="#"><i class="bi bi-instagram" ></i></a>
+                  <a href="#"><i class="bi bi-envelope" ></i></a>
+                  <a href="#"><i class="bi bi-twitter" ></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+ </footer>
+ <div class="footerBottom">
+  <p>Pravila privatnosti / &copy; JU Dom za djecu bez roditeljskog staranja USK-a</p>
+</div>

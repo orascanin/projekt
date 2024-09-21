@@ -1,0 +1,262 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="" style="width: 150px;">
+      
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle" style="font-size: 25px;margin-right: 8px;"></i>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ userName }}</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6></h6>
+
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/logout" (click)="logout()">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+   
+
+
+      
+      <li class="nav-heading">Pages</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/njegovatelji-direktor">
+          <i class="bi bi-person"></i>
+          <span>Njegovatelji</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/aktuelnosti-direktor">
+            <i class="bi bi-bell"></i>
+          <span>Aktuelnosti</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/djeca-direktor">
+            <i class="bi bi-clipboard"></i>
+          <span>Djeca</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/donacije-direktor">
+            <i class="bi bi-cash-stack"></i>
+          <span>Donacije</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/pravilnici-direktor">
+            <i class="bi bi-clipboard"></i>
+          <span>Pravilnici</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/izvjestaji-direktor">
+            <i class="bi bi-clipboard"></i>
+          <span>Izvještaji</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/sporazumi-direktor">
+            <i class="bi bi-clipboard"></i>
+          <span>Sporazumi</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/nabavke">
+            <i class="bi bi-clipboard"></i>
+          <span>Javne nabavke</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-login.html">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span><a href="/logout" (click)="logout()">Logout</a></span>
+        </a>
+      </li><!-- End Login Page Nav -->
+
+
+
+    </ul>
+
+  </aside>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div>
+
+      <section class="section dashboard">
+        <div class="container-xl">
+          <div class="table-responsive">
+            <div class="table-wrapper">
+                  <div *ngIf="isLoggedIn && userRole === 'director'">
+                    <div class="container section-title" data-aos="fade-up">
+                      <h2 style="font-family: Edwardian Script ITC;color: #e91e63;">Donirajte</h2>
+                      <p>Novac donirate u valuti BAM.</p>
+                    </div><!-- End Section Title -->
+                    <div class="donation-form">
+                      <form (ngSubmit)="createDonation()" #donationForm="ngForm">
+                        <div class="form-group">
+                          <label for="amount" style="color: #e91e63;">Iznos donacije:</label>
+                          <input id="amount" type="number" [(ngModel)]="amount" name="amount" placeholder="Enter donation amount"
+                            min="0.01" step="0.01" required class="form-control" style="box-shadow: 0 0 0 0.05rem #dc3545;" />
+                        </div>
+                        <div id="card-element" class="form-group">
+                          <!-- Stripe card element -->
+                        </div>
+                        <button type="submit" [disabled]="!donationForm.form.valid" class="btn btn-primary">
+                          Doniraj
+                        </button>
+                      </form>
+                    </div>
+                  
+                    <!-- Success Modal -->
+                    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="successModalLabel">Donacija uspješna!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Hvala Vam na doniranom novcu.
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Donacija neuspješna!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Došlo je do pogreške, molimo Vas pokušajte kasnije.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<div class="line-container"></div>
+<div class="centered-line"></div>-->
+     <!-- Section Title -->
+     <div class="container section-title" data-aos="fade-up">
+      <h2 style="font-family: Edwardian Script ITC;color: #e91e63;">Vaše donacije</h2>
+      <p>U nastavku pogledajte historiju Vaših donacija.</p>
+    </div><!-- End Section Title -->
+<div class="row d-flex flex-row flex-wrap" style="margin-top: 20px;">
+  <div class="col-xl-3 col-sm-6 col-12" *ngFor="let donation of donations">
+    <div class="card" style="width: 250px;">
+      <div class="card-content">
+        <div class="card-body">
+          <div class="media d-flex">
+            <!-- Ikona centrirana na lijevoj strani -->
+            <div class="align-self-center text-center" style="flex: 0 0 64px;">
+              <i class="bi bi-gift" style="font-size: 64px; color: #e91e63;"></i>
+            </div>
+
+            <!-- Tekst sa desne strane -->
+            <div class="media-body text-right">
+              <!-- Naglašen iznos donacije -->
+              <p style="font-size: 24px; font-weight: bold; color: #4CAF50;margin-top:20px;">
+                {{ donation.amount }} BAM
+              </p>
+              <span style="font-size: 12px;">
+                {{ donation.donation_date | date:'yyyy-MM-dd HH:mm:ss' }}
+              </span><br>
+              <span>{{ donation.payment_status }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                <p *ngIf="donations.length === 0">Nemate donacija.</p>
+              </div>
+            </div>
+          </div>
+
+      </section>
+      
+    
+      
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Dom za djecu bez roditeljskog staranja</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="#">Fatima i Faris</a>
+    </div>
+  </footer><!-- End Footer -->

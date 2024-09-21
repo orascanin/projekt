@@ -1,0 +1,314 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="" style="width: 150px;">
+      
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle" style="font-size: 25px;margin-right: 8px;"></i>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ userName }}</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6></h6>
+
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/logout" (click)="logout()">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+   
+
+
+      
+      <li class="nav-heading">Pages</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/njegovatelji-direktor">
+          <i class="bi bi-person"></i>
+          <span>Njegovatelji</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/aktuelnosti-direktor">
+            <i class="bi bi-bell"></i>
+          <span>Aktuelnosti</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/djeca-direktor">
+            <i class="bi bi-clipboard"></i>
+          <span>Djeca</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/donacije-direktor">
+            <i class="bi bi-cash-stack"></i>
+          <span>Donacije</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/pravilnici-direktor">
+            <i class="bi bi-clipboard"></i>
+          <span>Pravilnici</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/izvjestaji-direktor">
+            <i class="bi bi-clipboard"></i>
+          <span>Izvještaji</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/sporazumi-direktor">
+            <i class="bi bi-clipboard"></i>
+          <span>Sporazumi</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/direktor/nabavke">
+            <i class="bi bi-clipboard"></i>
+          <span>Javne nabavke</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-login.html">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span><a href="/logout" (click)="logout()">Logout</a></span>
+        </a>
+      </li><!-- End Login Page Nav -->
+
+
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="row">
+          <div class="container-xl">
+            <div class="table-responsive">
+              <div class="table-wrapper">
+                <div class="table-title">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <h2><b>Aktuelnosti</b></h2>
+                    </div>
+                    <div class="col-sm-6"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Dodavanje nove vesti za admina -->
+        <div *ngIf="isLoggedIn && userRole === 'director'">
+          <button type="button" class="btn btn-primary" (click)="openModal()" style="background-color: #e91e63; border-color: #e91e63;">
+            Dodaj aktuelnost
+          </button>
+      
+          <!-- Modal za dodavanje vesti -->
+          <div id="newsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="newsModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <form (ngSubmit)="uploadNews()">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Dodaj aktuelnost</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="title">Naslov</label>
+                      <input id="title" type="text" class="form-control" [(ngModel)]="newsTitle" name="title" required />
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Opis</label>
+                      <textarea id="description" class="form-control" [(ngModel)]="newsDescription" name="description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="file">Slika</label>
+                      <input id="file" type="file" class="form-control" (change)="onFileChange($event)" required />
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" style="background-color: #e91e63;border-color:#e91e63;">Dodaj</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+      
+
+          <section class="py-3 py-md-5" *ngFor="let item of news">
+
+            <div class="container overflow-hidden">
+              <div class="row gy-4">
+                <div class="col-12">
+                  <article class="d-flex align-items-stretch">
+                    <!-- Left Column for Image -->
+                    <div class="image-container">
+                      <a href="#!">
+                        <img *ngIf="item.image_path" [src]="getImageUrl(item.image_path)" alt="Slika vesti" class="img-fluid" />
+                        <i *ngIf="!item.image_path" class="bi bi-image" style="color: #e91e63;font-size:18px"></i>
+                      </a>
+                    </div>
+                    <!-- Right Column for Text -->
+                    <div class="flex-grow-1 d-flex flex-column justify-content-between border bg-white p-4">
+                      <div>
+                        <div class="entry-header mb-3">
+                          <ul class="entry-meta list-unstyled d-flex mb-2" style="color: #e91e63;">
+                            ID: {{ item.id }}
+                          </ul>
+                          <h2 class="card-title entry-title h4 mb-0">
+                            <a class="link-dark text-decoration-none" href="#!">{{ item.title }}</a>
+                          </h2>
+                        </div>
+                        <p class="card-text entry-summary text-secondary">
+                          {{ item.description }}
+                        </p>
+                      </div>
+                      <div class="card-footer border-0 bg-white p-0">
+                        <ul class="entry-meta list-unstyled d-flex align-items-center m-0">
+                          <li>
+                            <a class="fs-7 link-secondary text-decoration-none d-flex align-items-center" href="#!">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                                <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                                <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0zM9.5 8a3.5 3.5 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                              </svg>
+                              <span class="ms-2 fs-7">{{ item.upload_date | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+                            </a>
+                          </li>
+                          <li>
+                          <button style="border: none; background-color: transparent;margin-left:10px;">
+                            <a href="#" class="edit" data-toggle="modal" (click)="openEditModal(item)">
+                              <i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit" style="font-size: 15px;"></i>
+                            </a>
+                          </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </section>
+      
+    
+
+      
+        <!-- Modal za uređivanje aktuelnost -->
+        <div class="modal fade" id="editNewsModal" tabindex="-1" role="dialog" aria-labelledby="editNewsModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editNewsModalLabel">Uredi aktuelnost</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form (ngSubmit)="updateNews()">
+                  <div class="form-group">
+                    <label for="editNewsTitle">Naslov</label>
+                    <input type="text" id="editNewsTitle" [(ngModel)]="selectedNews.title" name="title" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="editNewsDescription">Opis</label>
+                    <textarea id="editNewsDescription" [(ngModel)]="selectedNews.description" name="description" class="form-control" rows="4"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="editNewsFile">Slika</label>
+                    <input type="file" id="editNewsFile" (change)="onFileChange($event)" class="form-control" />
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="background-color: #e91e63;border-color:#e91e63;">Sačuvaj promjene</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+          </div>
+        
+      </section>
+      
+    
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Dom za djecu bez roditeljskog staranja</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="#">Fatima i Faris</a>
+    </div>
+  </footer><!-- End Footer -->
