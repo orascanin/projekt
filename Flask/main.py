@@ -45,8 +45,8 @@ app = Flask(__name__) # Kreira novu instancu Flask aplikacije. `__name__` se kor
 
 
 now_utc = datetime.now(pytz.utc) #  Dohvata trenutno vrijeme u UTC vremenskoj zoni pomoću `datetime` i `pytz` biblioteka.
-app.secret_key = 'a3c0f2b4e3d3c9a9e4b7a6e7d3a8b9c6' # Postavlja tajni ključ za sesije u Flask aplikaciji. Ovaj ključ se koristi za zaštitu sesijskih podataka.
-app.config['JWT_SECRET_KEY'] = 'a3c0f2b4e3d3c9a9e4b7a6e7d3a8b9c6'  # Tajni ključ za potpisivanje tokena
+app.secret_key = '' # Postavlja tajni ključ za sesije u Flask aplikaciji. Ovaj ključ se koristi za zaštitu sesijskih podataka.
+app.config['JWT_SECRET_KEY'] = ''  # Tajni ključ za potpisivanje tokena
 jwt = JWTManager(app) # Inicijalizuje JWTManager sa Flask aplikacijom. Ovo omogućava rad sa JWT tokenima.
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=30) # Postavlja trajanje sesije na 30 dana. Ovo je vrijeme kada će sesija isteći ako korisnik ne koristi aplikaciju.
 app.config['SESSION_COOKIE_SECURE'] = False  # Postavlja opciju `SESSION_COOKIE_SECURE` na `False`, što znači da sesijski kolačići neće biti poslati samo preko HTTPS veze.
@@ -58,8 +58,8 @@ app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif', 'pdf'} # Defini
 ALLOWED_EXTENSIONS = {'pdf'}
 # Takođe, možete dodati maksimalnu veličinu fajla
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Postavlja maksimalnu veličinu fajla koji se može uploadovati na 16 MB. Ako fajl premašuje ovu veličinu, biće odbijen.
-stripe.api_key = "sk_test_51McVsOCfu7fp2kt4Ok1GL8HbNWZkgMgajUQxPFDzOEbQK7BAtBi7MlITGz3B3rJitZbLj5Z9gOxnQ09WlgiHyoit006rrJ7YDO" # Postavlja Stripe API ključ za testiranje. Ovaj ključ omogućava aplikaciji da komunicira sa Stripe servisom za obradu plaćanja.
-endpoint_secret = 'whsec_f2f81d03bc556da1d06d44033cec924f01cb590c0119243da976750acd4fee40' #Definiše tajni ključ za Stripe webhook, koji se koristi za verifikaciju zahtjeva koje šalje Stripe kada se događaji vezani za plaćanja dogode.
+stripe.api_key = "" # Postavlja Stripe API ključ za testiranje. Ovaj ključ omogućava aplikaciji da komunicira sa Stripe servisom za obradu plaćanja.
+endpoint_secret = '' #Definiše tajni ključ za Stripe webhook, koji se koristi za verifikaciju zahtjeva koje šalje Stripe kada se događaji vezani za plaćanja dogode.
 login_manager = LoginManager() #Kreira instancu `LoginManager`, koja upravlja autentifikacijom korisnika u Flask aplikaciji.
 login_manager.init_app(app) # Inicijalizuje `LoginManager` sa Flask aplikacijom. Ovo omogućava aplikaciji da koristi LoginManager za upravljanje prijavama.
 socketio = SocketIO(app, cors_allowed_origins="*") # Inicijalizuje SocketIO sa Flask aplikacijom, omogućavajući WebSocket komunikaciju. `cors_allowed_origins="*"` omogućava konekcije sa bilo kog domena.
@@ -67,7 +67,7 @@ socketio = SocketIO(app, cors_allowed_origins="*") # Inicijalizuje SocketIO sa F
 login_manager.login_view = 'login'  #Postavlja naziv rute za login stranicu. Kada korisnik pokuša da pristupi zaštićenim resursima preusmjeriti će ga na login stranicu
 logging.basicConfig(level=logging.DEBUG) #Konfiguriše osnovne postavke za logovanje u Python aplikaciji. Postavlja nivo logovanja na `DEBUG`, što omogućava bilježenje svih poruka od nivoa `DEBUG` pa naviše.
 CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}}) #Omogućava Cross-Origin Resource Sharing (CORS) za Flask aplikaciju. `supports_credentials=True` omogućava slanje kolačića sa zahtjeva sa drugih domena. `resources={r"/*": {"origins": "*"}}` omogućava zahtjeve sa svih domena.
-API_KEY = 'c974f956dd45e95a43429cafbd1ecd10'  # OpenWeatherMap API ključ
+API_KEY = ''  # OpenWeatherMap API ključ
 CITY = 'Bihać'
 WEATHER_URL = f'http://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric'
 
@@ -2940,8 +2940,8 @@ def caregiver_get_children_ID():
 # Konfiguracija za Flask-Mail
 app.config['MAIL_SERVER'] = 'smtp.gmail.com' # Postavlja SMTP server za slanje e-mailova na Gmailov server
 app.config['MAIL_PORT'] = 465 # Postavlja port za SMTP server; 465 je standardni port za SSL
-app.config['MAIL_USERNAME'] = 'fatima3.orascanin@gmail.com' # Postavlja korisničko ime za autentifikaciju na SMTP serveru (e-mail adresa)
-app.config['MAIL_PASSWORD'] = 'pniqlwkdkxleteaw' # Postavlja lozinku za autentifikaciju na SMTP serveru (treba biti sigurnije sa okruženjima ili varijablama okoline)
+app.config['MAIL_USERNAME'] = '' # Postavlja korisničko ime za autentifikaciju na SMTP serveru (e-mail adresa)
+app.config['MAIL_PASSWORD'] = '' # Postavlja lozinku za autentifikaciju na SMTP serveru (treba biti sigurnije sa okruženjima ili varijablama okoline)
 app.config['MAIL_USE_TLS'] = False # Onemogućava TLS (Transport Layer Security); koristi SSL umjesto TLS
 app.config['MAIL_USE_SSL'] = True # Omogućava SSL (Secure Sockets Layer) za šifriranje veze sa SMTP serverom
 mail = Mail(app) # Inicijalizuje Flask-Mail objekt sa aplikacijom
@@ -2952,7 +2952,7 @@ def send_email():
     msg = Message(
         subject=data['subject'], # Postavlja predmet e-maila uzet iz JSON podataka
         sender=data['email'],  # Postavlja pošiljatelja e-maila na e-mail adresu iz JSON podataka
-        recipients=['projektntip@gmail.com'],  # Prilagodite ovo na pravi e-mail za primanje
+        recipients=[''],  # Prilagodite ovo na pravi e-mail za primanje
         body=data['message'] # Postavlja sadržaj e-maila na poruku iz JSON podataka
     )
     try:
