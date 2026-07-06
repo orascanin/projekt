@@ -39,10 +39,12 @@ from flask_socketio import SocketIO, emit,  join_room, leave_room
 import functools
 from flask_jwt_extended import jwt_required, get_jwt_identity, decode_token
 from flask_jwt_extended.exceptions import NoAuthorizationError
+from dotenv import load_dotenv
+import os
 import requests
 
 app = Flask(__name__) # Kreira novu instancu Flask aplikacije. `__name__` se koristi za identifikaciju trenutnog modula.
-
+load_dotenv() 
 
 now_utc = datetime.now(pytz.utc) #  Dohvata trenutno vrijeme u UTC vremenskoj zoni pomoću `datetime` i `pytz` biblioteka.
 app.secret_key = '' # Postavlja tajni ključ za sesije u Flask aplikaciji. Ovaj ključ se koristi za zaštitu sesijskih podataka.
@@ -58,7 +60,7 @@ app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif', 'pdf'} # Defini
 ALLOWED_EXTENSIONS = {'pdf'}
 # Takođe, možete dodati maksimalnu veličinu fajla
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Postavlja maksimalnu veličinu fajla koji se može uploadovati na 16 MB. Ako fajl premašuje ovu veličinu, biće odbijen.
-#(Liniju odkomentarisati pri pokretanju projekta) stripe.api_key = "" # Postavlja Stripe API ključ za testiranje. Ovaj ključ omogućava aplikaciji da komunicira sa Stripe servisom za obradu plaćanja.
+stripe.api_key = os.getenv("STRIPE_API_KEY") # Postavlja Stripe API ključ za testiranje. Ovaj ključ omogućava aplikaciji da komunicira sa Stripe servisom za obradu plaćanja.
 endpoint_secret = '' #Definiše tajni ključ za Stripe webhook, koji se koristi za verifikaciju zahtjeva koje šalje Stripe kada se događaji vezani za plaćanja dogode.
 login_manager = LoginManager() #Kreira instancu `LoginManager`, koja upravlja autentifikacijom korisnika u Flask aplikaciji.
 login_manager.init_app(app) # Inicijalizuje `LoginManager` sa Flask aplikacijom. Ovo omogućava aplikaciji da koristi LoginManager za upravljanje prijavama.
