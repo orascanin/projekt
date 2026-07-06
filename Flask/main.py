@@ -58,7 +58,7 @@ app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif', 'pdf'} # Defini
 ALLOWED_EXTENSIONS = {'pdf'}
 # Takođe, možete dodati maksimalnu veličinu fajla
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Postavlja maksimalnu veličinu fajla koji se može uploadovati na 16 MB. Ako fajl premašuje ovu veličinu, biće odbijen.
-#stripe.api_key = "" # (Liniju odkomentarisati pri pokretanju projekta)- Postavlja Stripe API ključ za testiranje. Ovaj ključ omogućava aplikaciji da komunicira sa Stripe servisom za obradu plaćanja.
+#(Liniju odkomentarisati pri pokretanju projekta) stripe.api_key = "" # Postavlja Stripe API ključ za testiranje. Ovaj ključ omogućava aplikaciji da komunicira sa Stripe servisom za obradu plaćanja.
 endpoint_secret = '' #Definiše tajni ključ za Stripe webhook, koji se koristi za verifikaciju zahtjeva koje šalje Stripe kada se događaji vezani za plaćanja dogode.
 login_manager = LoginManager() #Kreira instancu `LoginManager`, koja upravlja autentifikacijom korisnika u Flask aplikaciji.
 login_manager.init_app(app) # Inicijalizuje `LoginManager` sa Flask aplikacijom. Ovo omogućava aplikaciji da koristi LoginManager za upravljanje prijavama.
